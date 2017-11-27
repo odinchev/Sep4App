@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class signup extends AppCompatActivity {
     ProgressBar progress;
@@ -74,7 +75,10 @@ public class signup extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"User registered unsuccessfull", Toast.LENGTH_SHORT).show();
+                    if(task.getException() instanceof FirebaseAuthUserCollisionException)
+                    {
+                        Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
