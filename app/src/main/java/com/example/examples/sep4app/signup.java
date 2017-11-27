@@ -79,6 +79,10 @@ public class signup extends AppCompatActivity {
                     {
                         Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();
                     }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
