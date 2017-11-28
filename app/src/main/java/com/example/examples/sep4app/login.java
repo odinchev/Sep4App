@@ -27,12 +27,14 @@ public class login extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Email=(EditText) findViewById(R.id.editTextEmail);
+        Password=(EditText)findViewById(R.id.editTextPassWordLogin);
         mAuth=FirebaseAuth.getInstance();
         progress=(ProgressBar)findViewById(R.id.progressBar2);
         Button signup= (Button) findViewById(R.id.signupbutton);
-        Button Login=(Button)findViewById(R.id.login);
+        Button Login=(Button)findViewById(R.id.loginbutton1);
     }
-    public void Login(View v)
+    public void Login1(View v)
     {
         String email= Email.getText().toString().trim();
         String  password=Password.getText().toString().trim();

@@ -28,7 +28,7 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         editTextEmail=(EditText) findViewById(R.id.editTextEmail);
         passWord=(EditText)findViewById(R.id.editTextPassWord);
-        Button login= (Button) findViewById(R.id.login);
+        Button login= (Button) findViewById(R.id.loginbutton1);
         Button signup=(Button)findViewById(R.id.signup);
         progress=(ProgressBar)findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
