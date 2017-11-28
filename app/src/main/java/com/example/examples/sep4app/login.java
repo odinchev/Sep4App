@@ -30,7 +30,7 @@ public class login extends AppCompatActivity
         mAuth=FirebaseAuth.getInstance();
         progress=(ProgressBar)findViewById(R.id.progressBar2);
         Button signup= (Button) findViewById(R.id.signupbutton);
-        Button Login=(Button)findViewById(R.id.button);
+        Button Login=(Button)findViewById(R.id.login);
     }
     public void Login(View v)
     {
