@@ -19,7 +19,8 @@
         <activity android:name=".signUp.signup_1" />
         <activity android:name=".signUp.signup_2" />
         <activity android:name=".signUp.signup_3" />
-        <activity android:name=".profile"></activity>
+        <activity android:name=".profile" />
+        <activity android:name=".findDevs"></activity>
     </application>
 
 </manifest>
