@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    tools:context="com.example.examples.sep4app.ProjectActivity">
+
+
+    <ImageView
+        android:id="@+id/project_image"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/text_project_skills_label"
+        android:text="Required knowledge: "
+        android:textColor="#000"
+        android:layout_below="@id/project_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_skills"
+        android:text="C#, Firebase"
+        android:textColor="#000"
+        android:layout_below="@id/project_image"
+        android:layout_toEndOf="@id/text_project_skills_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_exp_label"
+        android:text="Required experience: "
+        android:textColor="#000"
+        android:layout_below="@id/text_project_skills_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_exp"
+        android:text="3 years"
+        android:textColor="#000"
+        android:layout_below="@id/text_project_skills_label"
+        android:layout_toEndOf="@id/text_project_exp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_otherReqs_label"
+        android:text="Other requirements: "
+        android:textColor="#000"
+        android:layout_below="@id/text_project_exp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_otherReqs"
+        android:text="Be able to drink 1L of vodka in 1 min"
+        android:textColor="#000"
+        android:layout_below="@id/text_project_exp_label"
+        android:layout_toEndOf="@id/text_project_otherReqs_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_duration_label"
+        android:text="Expected duration: "
+        android:textColor="#000"
+        android:layout_below="@id/text_project_otherReqs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_duration"
+        android:text="5 months"
+        android:textColor="#000"
+        android:layout_below="@id/text_project_otherReqs"
+        android:layout_toEndOf="@id/text_project_duration_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_summary_label"
+        android:text="Summary: "
+        android:textColor="#000"
+        android:layout_below="@id/text_project_duration_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/text_project_summary"
+        android:text="This project is about creating a database of crazy vodka drinkers"
+        android:textColor="#000"
+        android:layout_below="@id/text_project_duration_label"
+        android:layout_toEndOf="@id/text_project_summary_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_contactProject"
+        android:text="Contact"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
