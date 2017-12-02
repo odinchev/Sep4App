@@ -10,40 +10,43 @@ public class User
     {
 
     }
+    String id;
     String name;
     String certifications;
-    String YearsofExperience;
+    String yearsofExperience;
     String description;
-    String PreferredIDE;
+    String preferredIDE;
 
 
-    public User(String name,String certifications,String YearsofExperience,String description,String PreferredIDE)
+    public User(String id,String Setname,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
     {
-        this.name=name;
-        this.certifications=certifications;
-        this.YearsofExperience=YearsofExperience;
-        this.description=description;
-        this.PreferredIDE=PreferredIDE;
+        this.id=id;
+        this.name=Setname;
+        this.certifications=Setcertifications;
+        this.yearsofExperience=SetYearsofExperience;
+        this.description=Setdescription;
+        this.preferredIDE=SetPreferredIDE;
     }
-    public void  Setname(String name)
+
+    public void  Setname(String Name)
     {
-        this.name=name;
+        this.name=Name;
     }
-    public void Setcertifications(String certifications)
+    public void Setcertifications(String SetCertifications)
     {
-        this.certifications=certifications;
+        this.certifications=SetCertifications;
     }
-    public void SetyearsOfExperience(String yearsofExperience)
+    public void SetyearsOfExperience(String SetyearsofExperience)
     {
-        this.YearsofExperience=yearsofExperience;
+        this.yearsofExperience=SetyearsofExperience;
     }
-    public void Setdesctription(String description)
+    public void Setdesctription(String SetDescription)
     {
-        this.description=description;
+        this.description=SetDescription;
     }
-    public void SetpreferredIDE(String preferredIDE)
+    public void Setide(String Setpreferredide)
     {
-        this.PreferredIDE=preferredIDE;
+        this.preferredIDE=Setpreferredide;
     }
     public String getName()
     {
@@ -55,15 +58,15 @@ public class User
     }
     public String getYearsofExperience()
     {
-        return YearsofExperience;
+        return yearsofExperience;
     }
     public String getDescription()
     {
         return description;
     }
-    public String getPreferredIDE()
+    public String getide()
     {
-        return PreferredIDE;
+        return preferredIDE;
     }
 
 

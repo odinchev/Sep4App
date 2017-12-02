@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.login;
+import com.example.examples.sep4app.profile.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -75,9 +76,12 @@ public class signup_3 extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
+
                     // make the user in the database
                     String id=database.push().getKey();
+                    User user=new User(id,name,certifications,yearsOfExperience,description,preferredIDE);
+                    database.child(id).setValue(user);
+                    Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
 
                 }
                 else
