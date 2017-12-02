@@ -76,6 +76,9 @@ public class signup_3 extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
+                    // make the user in the database
+                    String id=database.push().getKey();
+
                 }
                 else
                 {

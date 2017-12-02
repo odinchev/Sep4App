@@ -20,7 +20,7 @@ public class profile extends AppCompatActivity {
     TextView yearsofExperience;
     TextView Description;
     TextView preferredIDE;
-
+    public User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

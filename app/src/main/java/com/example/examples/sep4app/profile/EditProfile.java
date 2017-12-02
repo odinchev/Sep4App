@@ -96,21 +96,10 @@ public void SaveProfileToDatabase(View v)
             FirebaseUser user=mAuth.getCurrentUser();
             if(user!=null&&profileImageURL!=null)
             {
-                UserProfileChangeRequest profile=new UserProfileChangeRequest.Builder()
-                        .setDisplayName(name)
-                        .setPhotoUri(Uri.parse(profileImageURL))
-                        .build();
+               //writre all the stuff to the database
 
-                user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
 
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(EditProfile.this,"profile updated",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+
             }
 
 
