@@ -4,18 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/view1"
-        android:icon="@android:drawable/ic_menu_add"
-        android:title="Item"
-        app:showAsAction="always" />
+        android:id="@+id/nav_account"
+
+        android:title="MyAccount"
+          />
     <item
-        android:id="@+id/view2"
-        android:icon="@drawable/common_google_signin_btn_text_light"
+        android:id="@+id/nav_settings"
 
-        app:showAsAction="always"
-        android:title="item2" />
+        android:title="Settings"
+        />
+    <item
+        android:id="@+id/nav_logout"
 
-    <!-- Settings, should always be in the overflow -->
+        android:title="Log out"
+        />
 
 
 

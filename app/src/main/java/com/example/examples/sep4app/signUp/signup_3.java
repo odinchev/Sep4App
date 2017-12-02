@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class signup_3 extends AppCompatActivity {
 
@@ -36,11 +38,12 @@ public class signup_3 extends AppCompatActivity {
 
     // have multiple strings for the name and the other stuff pass them with intents
     private FirebaseAuth mAuth;
+            DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up3);
-
+        database= FirebaseDatabase.getInstance().getReference();
         Intent intent=getIntent();
         name=intent.getExtras().getString("name");
         LastName=intent.getExtras().getString("LastName");
