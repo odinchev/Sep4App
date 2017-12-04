@@ -73,7 +73,7 @@ public class login extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    Intent intent=new Intent(login.this,profile.class);
+                    Intent intent=new Intent(login.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.examples.sep4app.MainActivity">
+
+    <ImageView
+        android:id="@+id/main_profilePic"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/main_textHello"
+        android:text="Hello firstName!"
+        android:textColor="#000"
+        android:layout_below="@id/main_profilePic"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/main_what2do"
+        android:text="What would you like to do?"
+        android:textColor="#000"
+        android:layout_below="@id/main_textHello"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_findProjects"
+        android:text="Find Projects"
+        android:layout_below="@id/main_what2do"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_findDevs"
+        android:text="Find Developers"
+        android:layout_below="@id/btn_findProjects"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_createDevProfile"
+        android:text="Create Dev Profile"
+        android:layout_below="@id/btn_findDevs"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_createProject"
+        android:text="Create a Project"
+        android:layout_below="@id/btn_createDevProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
