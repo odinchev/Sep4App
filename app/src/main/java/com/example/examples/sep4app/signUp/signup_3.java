@@ -44,7 +44,7 @@ public class signup_3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up3);
-        database= FirebaseDatabase.getInstance().getReference();
+        database= FirebaseDatabase.getInstance().getReference("Users");
         Intent intent=getIntent();
         name=intent.getExtras().getString("name");
         LastName=intent.getExtras().getString("LastName");
@@ -78,8 +78,8 @@ public class signup_3 extends AppCompatActivity {
                 {
 
                     // make the user in the database
-                    String id=database.push().getKey();
-                    User user=new User(id,name,certifications,yearsOfExperience,description,preferredIDE);
+                    String id=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    User user=new User(id,name,LastName,certifications,yearsOfExperience,description,preferredIDE);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
 
