@@ -12,16 +12,18 @@ public class User
     }
     String id;
     String name;
+    String lastName;
     String certifications;
     String yearsofExperience;
     String description;
     String preferredIDE;
 
 
-    public User(String id,String Setname,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
+    public User(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
     {
         this.id=id;
         this.name=Setname;
+        this.lastName=SetlastName;
         this.certifications=Setcertifications;
         this.yearsofExperience=SetYearsofExperience;
         this.description=Setdescription;
@@ -31,6 +33,10 @@ public class User
     public void  Setname(String Name)
     {
         this.name=Name;
+    }
+    public void SetlastName(String LastName)
+    {
+        this.lastName=LastName;
     }
     public void Setcertifications(String SetCertifications)
     {
@@ -51,6 +57,10 @@ public class User
     public String getName()
     {
         return name;
+    }
+    public String getLastName()
+    {
+        return lastName;
     }
     public String getCertifications()
     {
