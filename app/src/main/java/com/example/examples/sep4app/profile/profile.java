@@ -1,8 +1,11 @@
 package com.example.examples.sep4app.profile;
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 // for viewing the profile both for the user and the other users
 public class profile extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
     TextView name;
@@ -44,6 +49,19 @@ public class profile extends AppCompatActivity {
       //  ab.setDisplayShowTitleEnabled(false);
        // ab.setDisplayHomeAsUpEnabled(true);
 
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(mToggle.onOptionsItemSelected(item))
+        {return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

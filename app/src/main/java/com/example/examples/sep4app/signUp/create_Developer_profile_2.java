@@ -2,8 +2,11 @@ package com.example.examples.sep4app.signUp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class create_Developer_profile_2 extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
 // this is the screen for developers  not a sign up but editing stuff that means no register user with mauth but push dev to database with getkey we need a map
     EditText editTextSkills;//3
     public String name;
@@ -44,6 +49,18 @@ public class create_Developer_profile_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_developer_profile2);
+
+
+        //for the Drawer side menu
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //for the drawer side menu ^^^^
+
+
         database= FirebaseDatabase.getInstance().getReference("Developers");
 
         Intent intent=getIntent();
@@ -64,6 +81,13 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         progress=(ProgressBar)findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(mToggle.onOptionsItemSelected(item))
+        {return true;
+        }
+        return super.onOptionsItemSelected(item);
+    //for selecting stuff in the drawer menu
     }
     public void registerUser(View v)
     {

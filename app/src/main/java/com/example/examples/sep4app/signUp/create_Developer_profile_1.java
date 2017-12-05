@@ -2,8 +2,11 @@ package com.example.examples.sep4app.signUp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 public class create_Developer_profile_1 extends AppCompatActivity
 {
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
     EditText editTextCertifications;//2
     EditText editTextYearsOfExperience;//2
     EditText editTextDescription;//2
@@ -41,6 +47,16 @@ public class create_Developer_profile_1 extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_developer_profile1);
+
+        //for the Drawer side menu
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //for the drawer side menu ^
+
 
        // database= FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +94,12 @@ public class create_Developer_profile_1 extends AppCompatActivity
 
 
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(mToggle.onOptionsItemSelected(item))
+        {return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void NextScreen(View v)
     {

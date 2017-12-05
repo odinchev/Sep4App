@@ -1,8 +1,11 @@
 package com.example.examples.sep4app;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +15,9 @@ import com.example.examples.sep4app.signUp.create_Developer_profile_1;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
     private TextView hello, what2do;
     private ImageView profilePic;
     private Button findDev, findProject, createDev, createProject;
@@ -20,6 +26,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
 
         //hello should take firstName from DB and create string "Hello " + firstName + "!"
         hello = (TextView) findViewById(R.id.main_textHello);
@@ -60,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(mToggle.onOptionsItemSelected(item))
+        {return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void go2ProjectSearch() {
