@@ -1,12 +1,13 @@
-package com.example.examples.sep4app.profile;
+package com.example.examples.sep4app.DeveloperProfile;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.examples.sep4app.R;
+import com.example.examples.sep4app.profile.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,21 +16,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 // for viewing the profile both for the user and the other users
-public class profile extends AppCompatActivity {
+public class Developerprofile extends AppCompatActivity {
 
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
     TextView name;
     TextView certifications;
-    TextView yearsofExperience;
+   TextView yearsofExperience;
     TextView Description;
+    TextView Skills;
     TextView preferredIDE;
-    public User user;
+    public developer developer;
     DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_developer_profile);
        // Toolbar mytoolbar=(Toolbar)findViewById(R.id.ToolBar);
       //  setSupportActionBar(mytoolbar);
     profilePicture=(ImageView)findViewById(R.id.imageView);
@@ -37,7 +39,8 @@ public class profile extends AppCompatActivity {
     certifications=(TextView)findViewById(R.id.textViewCertifications);
     yearsofExperience=(TextView)findViewById(R.id.textViewYearsofExperience);
     Description=(TextView)findViewById(R.id.textViewDescription);
-    preferredIDE=(TextView)findViewById(R.id.textViewPreferredIDE);
+    Skills=(TextView)findViewById(R.id.textViewTags);
+   preferredIDE=(TextView)findViewById(R.id.textViewPreferredIDE);
     database= FirebaseDatabase.getInstance().getReference();
 
        // ActionBar ab=getSupportActionBar();
@@ -51,14 +54,19 @@ public class profile extends AppCompatActivity {
     {
         super.onStart();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
-                         User user=dataSnapshot.getValue(User.class);
-                         name.setText(user.getName() +" "+ user.getLastName());
-                         Description.setText(user.getDescription());
+                    developer developer=dataSnapshot.getValue(developer.class);
+
+                        name.setText(developer.getName() +" "+ developer.getLastName());
+                        certifications.setText(developer.getCertifications());
+                       yearsofExperience.setText(developer.getYearsofExperience());
+                       Skills.setText(developer.getTags());
+                       Description.setText(developer.getDescription());
+                       preferredIDE.setText(developer.getide());
 
                 }
             }

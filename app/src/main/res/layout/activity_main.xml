@@ -51,6 +51,7 @@
         android:layout_below="@id/btn_findDevs"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
+        android:onClick="CreateDeveloper"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btn_createProject"

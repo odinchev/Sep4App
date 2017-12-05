@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.examples.sep4app.DeveloperProfile.developer;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,8 +17,9 @@ import java.util.List;
 
 public class findDevs extends AppCompatActivity {
 
+
     private RecyclerView recyclerView;
-    private List<DevModel> devList;
+    private List<developer> devList;
     private DevAdapter adapter;
 
     private FirebaseDatabase database;
@@ -55,7 +57,7 @@ public class findDevs extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                devList.add(dataSnapshot.getValue(DevModel.class));
+                devList.add(dataSnapshot.getValue(developer.class));
                 adapter.notifyDataSetChanged();
             }
 
@@ -63,8 +65,8 @@ public class findDevs extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(DevModel.class));
-                devList.set(index, dataSnapshot.getValue(DevModel.class));
+                int index = getItemIndex(dataSnapshot.getValue(developer.class));
+                devList.set(index, dataSnapshot.getValue(developer.class));
                 adapter.notifyItemChanged(index);
             }
 
@@ -72,7 +74,7 @@ public class findDevs extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(DevModel.class));
+                int index = getItemIndex(dataSnapshot.getValue(developer.class));
 
                 devList.remove(index);
                 adapter.notifyItemRemoved(index);
@@ -91,12 +93,12 @@ public class findDevs extends AppCompatActivity {
         });
     }
 
-    private int getItemIndex(DevModel developer){
+    private int getItemIndex(developer developer){
 
         int index = savePos;
 
         for(int i=0; i < devList.size(); i++){
-            if(devList.get(i).key.equals(developer.key)) {
+            if(devList.get(i).id.equals(developer.id)) {
                 index = i;
                 break;
             }
@@ -105,4 +107,5 @@ public class findDevs extends AppCompatActivity {
         return index;
 
     }
+
 }

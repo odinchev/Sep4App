@@ -1,5 +1,8 @@
 package com.example.examples.sep4app.profile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by PC on 2.12.2017 г..
  */
@@ -29,7 +32,14 @@ public class User
         this.description=Setdescription;
         this.preferredIDE=SetPreferredIDE;
     }
+    public User(String id,String Setname,String SetlastName,String Setdescription)
+    {
+        this.id=id;
+        this.name=Setname;
+        this.lastName=SetlastName;
+        this.description=Setdescription;
 
+    }
     public void  Setname(String Name)
     {
         this.name=Name;
@@ -46,6 +56,7 @@ public class User
     {
         this.yearsofExperience=SetyearsofExperience;
     }
+
     public void Setdesctription(String SetDescription)
     {
         this.description=SetDescription;

@@ -1,4 +1,4 @@
-package com.example.examples.sep4app.profile;
+package com.example.examples.sep4app.DeveloperProfile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,7 +27,7 @@ import java.io.IOException;
  * Created by PC on 1.12.2017 г..
  */
 
-public class EditProfile extends AppCompatActivity
+public class editProfileDeveloper extends AppCompatActivity
 
     {
 
@@ -137,7 +137,7 @@ public void SaveProfileToDatabase(View v)
                     public void onFailure(@NonNull Exception e) {
 
 
-                        Toast.makeText(EditProfile.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(editProfileDeveloper.this,e.getMessage(),Toast.LENGTH_LONG).show();
 
 
                     }

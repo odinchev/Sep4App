@@ -56,6 +56,38 @@
                 tools:layout_editor_absoluteY="184dp" />
 
             <TextView
+                android:id="@+id/CertificationsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:text="Certifications"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewCertifications"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="Certifications"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/YearsofexperienecLabel"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Years of experience"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewYearsofExperience"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:text="Years of experience"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
                 android:id="@+id/DescriptionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
@@ -72,6 +104,38 @@
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="95dp"
                 tools:layout_editor_absoluteY="257dp" />
+
+            <TextView
+                android:id="@+id/TagsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:text="Skills"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewTags"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="Skills"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/PreferredIDELabel"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:text="Preferred IDE"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewPreferredIDE"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Preferred IDE"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

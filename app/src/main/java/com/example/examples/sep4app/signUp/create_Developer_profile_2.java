@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
+import com.example.examples.sep4app.DeveloperProfile.developer;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.login;
 import com.example.examples.sep4app.profile.User;
@@ -23,9 +23,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class signup_3 extends AppCompatActivity {
+public class create_Developer_profile_2 extends AppCompatActivity {
 
-
+// this is the screen for developers  not a sign up but editing stuff that means no register user with mauth but push dev to database with getkey we need a map
     EditText editTextSkills;//3
     public String name;
     public String LastName;
@@ -43,8 +43,9 @@ public class signup_3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up3);
-        database= FirebaseDatabase.getInstance().getReference("Users");
+        setContentView(R.layout.activity_create_developer_profile2);
+        database= FirebaseDatabase.getInstance().getReference("Developers");
+
         Intent intent=getIntent();
         name=intent.getExtras().getString("name");
         LastName=intent.getExtras().getString("LastName");
@@ -53,7 +54,7 @@ public class signup_3 extends AppCompatActivity {
         certifications=intent.getExtras().getString("certifications");
         yearsOfExperience=intent.getExtras().getString("yearsOfExperience");
         description=intent.getExtras().getString("description");
-        preferredIDE=intent.getExtras().getString("preferredIDE");
+        preferredIDE=intent.getExtras().getString("preferredide");
 
 
         editTextSkills=(EditText)findViewById(R.id.editTextSkills);
@@ -99,6 +100,18 @@ public class signup_3 extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void RegisterDeveloper(View v)
+    {
+
+        String skills=editTextSkills.getText().toString().trim();
+
+        String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE);
+        database.child(id).setValue(developer);
+        Intent intent =new Intent(create_Developer_profile_2.this, Developerprofile.class);
+        startActivity(intent);
     }
     public void LogIn(View v)
     {

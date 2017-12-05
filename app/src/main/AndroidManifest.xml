@@ -17,11 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".signUp.signup_1" />
-        <activity android:name=".signUp.signup_2" />
-        <activity android:name=".signUp.signup_3" />
+        <activity android:name=".signUp.create_Developer_profile_1" />
+        <activity android:name=".signUp.create_Developer_profile_2" />
         <activity android:name=".profile.profile" />
         <activity android:name=".profile.EditProfile" />
         <activity android:name=".findDevs" />
+        <activity android:name=".DeveloperProfile.Developerprofile" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

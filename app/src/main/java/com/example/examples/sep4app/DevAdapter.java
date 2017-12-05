@@ -1,24 +1,23 @@
 package com.example.examples.sep4app;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.examples.sep4app.DeveloperProfile.developer;
 
 import java.util.List;
-
+import com.example.examples.sep4app.DeveloperProfile.developer;
 /**
  * Created by MrWhitemount on 01-Dec-17.
  */
 
 class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
-    private List<DevModel> list;
+    private List<developer> list;
 
-    public DevAdapter(List<DevModel> list){
+    public DevAdapter(List<developer> list){
         this.list = list;
     }
 
@@ -31,13 +30,13 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     @Override
     public void onBindViewHolder(final DevViewHolder holder, int position) {
 
-        DevModel developer = list.get(position);
+        developer developer = list.get(position);
 
         holder.textName.setText(developer.name);
-        holder.textSkills.setText(developer.tagsToString);
+       // holder.textSkills.setText(developer.tagsToString);
         holder.textYears.setText(developer.yearsOfExp);
         holder.textCerts.setText(developer.certificates);
-        holder.textInterests.setText(developer.interests);
+        //holder.textInterests.setText(developer.interests);
 
     }
 
