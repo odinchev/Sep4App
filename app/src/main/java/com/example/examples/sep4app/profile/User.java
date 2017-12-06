@@ -20,6 +20,7 @@ public class User
     String yearsofExperience;
     String description;
     String preferredIDE;
+    String picture;
 
 
     public User(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
@@ -31,13 +32,15 @@ public class User
         this.yearsofExperience=SetYearsofExperience;
         this.description=Setdescription;
         this.preferredIDE=SetPreferredIDE;
+
     }
-    public User(String id,String Setname,String SetlastName,String Setdescription)
+    public User(String id,String Setname,String SetlastName,String Setdescription,String Setpicture)
     {
         this.id=id;
         this.name=Setname;
         this.lastName=SetlastName;
         this.description=Setdescription;
+        this.picture=Setpicture;
 
     }
     public void  Setname(String Name)
@@ -55,6 +58,10 @@ public class User
     public void SetyearsOfExperience(String SetyearsofExperience)
     {
         this.yearsofExperience=SetyearsofExperience;
+    }
+    public void Setpicture(String picture)
+    {
+        this.picture=picture;
     }
 
     public void Setdesctription(String SetDescription)
@@ -76,6 +83,10 @@ public class User
     public String getCertifications()
     {
         return certifications;
+    }
+    public String getPicture()
+    {
+        return picture;
     }
     public String getYearsofExperience()
     {

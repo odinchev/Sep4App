@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.examples.sep4app.profile.profile">
+    tools:context="com.example.examples.sep4app.profile.EditProfile">
 
 
     <ImageView
@@ -83,7 +83,7 @@
                 android:id="@+id/SaveProfileEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="SaveProfiletoDatabase"
+                android:onClick="SaveProfileToDatabase"
                 android:text="Save" />
 
         </LinearLayout>

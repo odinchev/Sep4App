@@ -40,6 +40,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
     public String yearsOfExperience;
     public String description;
     public String preferredIDE;
+    public String Picture;
     ProgressBar progress;
 
     // have multiple strings for the name and the other stuff pass them with intents
@@ -72,6 +73,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         yearsOfExperience=intent.getExtras().getString("yearsOfExperience");
         description=intent.getExtras().getString("description");
         preferredIDE=intent.getExtras().getString("preferredide");
+        Picture=intent.getExtras().getString("Picture");
 
 
         editTextSkills=(EditText)findViewById(R.id.editTextSkills);
@@ -132,7 +134,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         String skills=editTextSkills.getText().toString().trim();
 
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE);
+        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
         database.child(id).setValue(developer);
         Intent intent =new Intent(create_Developer_profile_2.this, Developerprofile.class);
         startActivity(intent);

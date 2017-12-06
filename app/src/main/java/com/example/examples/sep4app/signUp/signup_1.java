@@ -110,7 +110,7 @@ public class signup_1 extends AppCompatActivity
 
                     // make the user in the database
                     String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User user=new User(id,name,LastName,description);
+                    User user=new User(id,name,LastName,description,null);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(signup_1.this,profile.class);

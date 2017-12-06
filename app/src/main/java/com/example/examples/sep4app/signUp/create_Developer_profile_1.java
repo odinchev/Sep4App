@@ -38,6 +38,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
     public String LastName;
     public String email;
     public String password;
+    public String Picture;
     private FirebaseAuth mAuth;
     DatabaseReference database;
     DataSnapshot dataSnapshot;
@@ -71,6 +72,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
                     User user=dataSnapshot.getValue(User.class);
                     name=user.getName();
                     LastName=user.getLastName();
+                    Picture=user.getPicture();
                 }
             }
 
@@ -117,6 +119,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
         intent.putExtra("yearsOfExperience",yearsOfExperience);
         intent.putExtra("description",description);
         intent.putExtra("preferredide",preferredIDE);
+        intent.putExtra("Picture",Picture);
         startActivity(intent);
 
     }

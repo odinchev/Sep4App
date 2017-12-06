@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.profile.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,6 +68,10 @@ public class Developerprofile extends AppCompatActivity {
                        Skills.setText(developer.getTags());
                        Description.setText(developer.getDescription());
                        preferredIDE.setText(developer.getide());
+
+                    Glide.with(getApplicationContext())
+                            .load(developer.getPicture())
+                            .into(profilePicture);
 
                 }
             }

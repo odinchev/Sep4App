@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.examples.sep4app.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,19 +37,15 @@ public class profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-       // Toolbar mytoolbar=(Toolbar)findViewById(R.id.ToolBar);
-      //  setSupportActionBar(mytoolbar);
+
     profilePicture=(ImageView)findViewById(R.id.imageView);
     name=(TextView)findViewById(R.id.textViewName);
     certifications=(TextView)findViewById(R.id.textViewCertifications);
     yearsofExperience=(TextView)findViewById(R.id.textViewYearsofExperience);
     Description=(TextView)findViewById(R.id.textViewDescription);
     preferredIDE=(TextView)findViewById(R.id.textViewPreferredIDE);
-    database= FirebaseDatabase.getInstance().getReference();
+    database= FirebaseDatabase.getInstance().getReference("Users");
 
-       // ActionBar ab=getSupportActionBar();
-      //  ab.setDisplayShowTitleEnabled(false);
-       // ab.setDisplayHomeAsUpEnabled(true);
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -77,6 +75,10 @@ public class profile extends AppCompatActivity {
                          User user=dataSnapshot.getValue(User.class);
                          name.setText(user.getName() +" "+ user.getLastName());
                          Description.setText(user.getDescription());
+                         // here is where we use glide to take the picture url and put it into the ImageView
+                        Glide.with(getApplicationContext())
+                            .load(user.getPicture())
+                            .into(profilePicture);
 
                 }
             }

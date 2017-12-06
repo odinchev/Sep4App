@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.profile.EditProfile;
+import com.example.examples.sep4app.profile.profile;
 import com.example.examples.sep4app.signUp.create_Developer_profile_1;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView hello, what2do;
     private ImageView profilePic;
     private Button findDev, findProject, createDev, createProject;
+    private Button editProfile;
+    private Button editDeveloperProfile;
+    private Button goToProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
                 go2CreateProject();
             }
         });
+        editProfile=(Button)findViewById(R.id.buttonEditProfile);
+        editDeveloperProfile=(Button)findViewById(R.id.buttonEditDeveloperProfile);
+        goToProfile=(Button)findViewById(R.id.buttonProfile);
+
+
 
     }
     public boolean onOptionsItemSelected(MenuItem item){
@@ -102,6 +113,22 @@ public class MainActivity extends AppCompatActivity {
     public void CreateDeveloper(View v)
     {
         Intent intent =new Intent(MainActivity.this,create_Developer_profile_1.class);
+        startActivity(intent);
+    }
+    public void EditProfile(View v)
+    {
+        Intent intent=new Intent(MainActivity.this,EditProfile.class);
+        startActivity(intent);
+    }
+    public void EditDeveloperProfile(View v)
+    {
+        Intent intent=new Intent(MainActivity.this,editProfileDeveloper.class);
+        startActivity(intent);
+
+    }
+    public void goToProfile(View v)
+    {
+        Intent intent=new Intent(MainActivity.this,profile.class);
         startActivity(intent);
     }
 }

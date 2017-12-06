@@ -24,13 +24,14 @@ public class developer
    public String description;
    public String tags;
     public String preferredIDE;
+    String picture;
 
     public developer(){
 
     }
 
 
-    public developer(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String settags,String SetPreferredIDE)
+    public developer(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String settags,String SetPreferredIDE,String ProfilePucture)
     {
         // fetch name from database
         this.id=id;
@@ -41,6 +42,7 @@ public class developer
         this.description=Setdescription;
         this.tags=settags;
         this.preferredIDE=SetPreferredIDE;
+        this.picture=ProfilePucture;
     }
 
 /**
@@ -123,6 +125,10 @@ public class developer
     {
         this.preferredIDE=Setpreferredide;
     }
+    public void SetProfilePicture(String picture)
+    {
+        this.picture=picture;
+    }
     public String getName()
     {
         return name;
@@ -150,6 +156,10 @@ public class developer
     public String getTags()
     {
         return tags;
+    }
+    public String getPicture()
+    {
+        return picture;
     }
 
 
