@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.examples.sep4app.DeveloperProfile.developer;
 import com.google.firebase.database.ChildEventListener;
@@ -60,6 +61,7 @@ public class findDevs extends AppCompatActivity {
 
         adapter = new DevAdapter(devList);
         recyclerView.setAdapter(adapter);
+
 
         updateList();
 

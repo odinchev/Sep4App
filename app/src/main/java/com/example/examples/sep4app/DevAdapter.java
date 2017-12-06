@@ -1,10 +1,13 @@
 package com.example.examples.sep4app;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.examples.sep4app.DeveloperProfile.developer;
 
@@ -16,6 +19,7 @@ import com.example.examples.sep4app.DeveloperProfile.developer;
 
 class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private List<developer> list;
+
 
     public DevAdapter(List<developer> list){
         this.list = list;
@@ -32,11 +36,11 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
 
         developer developer = list.get(position);
 
-        holder.textName.setText(developer.name);
-       // holder.textSkills.setText(developer.tagsToString);
-        holder.textYears.setText(developer.yearsOfExp);
-        holder.textCerts.setText(developer.certificates);
-        //holder.textInterests.setText(developer.interests);
+        holder.textName.setText(developer.name + " " + developer.lastName);
+        holder.textSkills.setText(developer.tags);
+        holder.textYears.setText(developer.yearsofExperience);
+        holder.textCerts.setText(developer.certifications);
+        holder.textInterests.setText(developer.description);
 
     }
 
@@ -48,6 +52,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     class DevViewHolder extends RecyclerView.ViewHolder{
 
         TextView textName, textSkills, textYears, textCerts, textInterests;
+        RelativeLayout devLayout;
 
         public DevViewHolder(View itemView) {
             super(itemView);
@@ -57,7 +62,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
             textYears = (TextView) itemView.findViewById(R.id.text_yearsOfExp);
             textCerts = (TextView) itemView.findViewById(R.id.text_certificates);
             textInterests = (TextView) itemView.findViewById(R.id.text_interestedIn);
-
+            devLayout = (RelativeLayout) itemView.findViewById(R.id.layout_devInList);
 
         }
     }

@@ -61,14 +61,13 @@ public class MainActivity extends AppCompatActivity {
         });
         
         createDev = (Button)findViewById(R.id.btn_createDevProfile);
-        /**
         createDev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 go2CreateDev();
             }
         });
-        */
+
         createProject = (Button)findViewById(R.id.btn_createProject);
         createProject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +94,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void go2CreateDev() {
+        Intent intent =new Intent(MainActivity.this,create_Developer_profile_1.class);
+        startActivity(intent);
     }
 
     private void go2CreateProject() {
     }
-    public void CreateDeveloper(View v)
+    /*public void CreateDeveloper(View v)
     {
         Intent intent =new Intent(MainActivity.this,create_Developer_profile_1.class);
         startActivity(intent);
-    }
+    }*/
 }
