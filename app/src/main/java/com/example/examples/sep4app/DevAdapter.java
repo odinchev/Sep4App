@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +53,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     class DevViewHolder extends RecyclerView.ViewHolder{
 
         TextView textName, textSkills, textYears, textCerts, textInterests;
-        RelativeLayout devLayout;
+
+
 
         public DevViewHolder(View itemView) {
             super(itemView);
@@ -62,7 +64,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
             textYears = (TextView) itemView.findViewById(R.id.text_yearsOfExp);
             textCerts = (TextView) itemView.findViewById(R.id.text_certificates);
             textInterests = (TextView) itemView.findViewById(R.id.text_interestedIn);
-            devLayout = (RelativeLayout) itemView.findViewById(R.id.layout_devInList);
+
 
         }
     }
