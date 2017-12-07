@@ -1,7 +1,10 @@
 package com.example.examples.sep4app.signUp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +18,14 @@ import android.widget.Toast;
 
 import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
 import com.example.examples.sep4app.DeveloperProfile.developer;
+import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
+import com.example.examples.sep4app.findDevs;
 import com.example.examples.sep4app.login;
+import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.User;
+import com.example.examples.sep4app.profile.profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,8 +34,10 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class create_Developer_profile_2 extends AppCompatActivity {
+import static android.widget.Toast.LENGTH_SHORT;
 
+public class create_Developer_profile_2 extends AppCompatActivity {
+ private   NavigationView navigation;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 // this is the screen for developers  not a sign up but editing stuff that means no register user with mauth but push dev to database with getkey we need a map
@@ -40,6 +50,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
     public String yearsOfExperience;
     public String description;
     public String preferredIDE;
+    public String Picture;
     ProgressBar progress;
 
     // have multiple strings for the name and the other stuff pass them with intents
@@ -50,6 +61,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_developer_profile2);
 
+        navigation = (NavigationView) findViewById(R.id.navigation_view);
 
         //for the Drawer side menu
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
@@ -72,6 +84,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         yearsOfExperience=intent.getExtras().getString("yearsOfExperience");
         description=intent.getExtras().getString("description");
         preferredIDE=intent.getExtras().getString("preferredide");
+        Picture=intent.getExtras().getString("Picture");
 
 
         editTextSkills=(EditText)findViewById(R.id.editTextSkills);
@@ -80,13 +93,115 @@ public class create_Developer_profile_2 extends AppCompatActivity {
 
         progress=(ProgressBar)findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
+        initInstances();
 
     }
+
+
+
+
+
+    private void initInstances() {
+
+//navbar
+
+
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.nav_Main:
+                        Intent i = new Intent(create_Developer_profile_2.this, MainActivity.class);
+                        startActivity(i);
+                        break;
+                    case R.id.nav_Profile:
+                        Intent j = new Intent(create_Developer_profile_2.this,profile.class);
+                       startActivity(j);
+                        break;
+                    case R.id.nav_EditProfile:
+                        Intent k = new Intent(create_Developer_profile_2.this,EditProfile.class);
+                        startActivity(k);
+                        break;
+
+
+                    case R.id.nav_Create_Developer_Profile:
+                        Intent l = new Intent(create_Developer_profile_2.this,create_Developer_profile_1.class);
+                        startActivity(l);
+                        break;
+
+
+                    case R.id.nav_Edit_Developer_Profile:
+                        Intent m = new Intent(create_Developer_profile_2.this,editProfileDeveloper.class);
+                        startActivity(m);
+                        break;
+
+
+                    case R.id.nav_View_Developer_Profile:
+                        Intent n = new Intent(create_Developer_profile_2.this,Developerprofile.class);
+                        startActivity(n);
+                        break;
+
+
+                    case R.id.nav_Find_Developers:
+                        Intent o = new Intent(create_Developer_profile_2.this,findDevs.class);
+                        startActivity(o);
+                        break;
+
+                    case R.id.nav_Find_Projects:
+                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                       // startActivity(p);
+                        Context context = getApplicationContext();
+                            CharSequence text = "EMPTINESS!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast.makeText(context, text, duration).show();
+
+
+
+                        break;
+
+
+
+                }
+                return false;
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public boolean onOptionsItemSelected(MenuItem item){
-        if(mToggle.onOptionsItemSelected(item))
+
+
+
+
+       if(mToggle.onOptionsItemSelected(item ))
+
+
+
         {return true;
         }
         return super.onOptionsItemSelected(item);
+
     //for selecting stuff in the drawer menu
     }
     public void registerUser(View v)
@@ -113,11 +228,11 @@ public class create_Developer_profile_2 extends AppCompatActivity {
                 {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException)
                     {
-                        Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "User already exists", LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), LENGTH_SHORT).show();
                     }
                 }
 
@@ -132,7 +247,7 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         String skills=editTextSkills.getText().toString().trim();
 
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE);
+        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
         database.child(id).setValue(developer);
         Intent intent =new Intent(create_Developer_profile_2.this, Developerprofile.class);
         startActivity(intent);

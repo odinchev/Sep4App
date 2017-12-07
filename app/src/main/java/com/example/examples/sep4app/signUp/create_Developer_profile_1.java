@@ -1,7 +1,9 @@
 package com.example.examples.sep4app.signUp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
+import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
+import com.example.examples.sep4app.findDevs;
+import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.User;
+import com.example.examples.sep4app.profile.profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +38,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-
+    private   NavigationView navigation;
     EditText editTextCertifications;//2
     EditText editTextYearsOfExperience;//2
     EditText editTextDescription;//2
@@ -38,6 +47,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
     public String LastName;
     public String email;
     public String password;
+    public String Picture;
     private FirebaseAuth mAuth;
     DatabaseReference database;
     DataSnapshot dataSnapshot;
@@ -51,12 +61,12 @@ public class create_Developer_profile_1 extends AppCompatActivity
         //for the Drawer side menu
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
-
+        navigation = (NavigationView) findViewById(R.id.navigation_view);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //for the drawer side menu ^
-
+        initInstances();
 
        // database= FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
@@ -71,6 +81,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
                     User user=dataSnapshot.getValue(User.class);
                     name=user.getName();
                     LastName=user.getLastName();
+                    Picture=user.getPicture();
                 }
             }
 
@@ -101,6 +112,97 @@ public class create_Developer_profile_1 extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void initInstances() {
+
+//navbar
+
+
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.nav_Main:
+                        Intent i = new Intent(create_Developer_profile_1.this, MainActivity.class);
+                        startActivity(i);
+                        break;
+                    case R.id.nav_Profile:
+                        Intent j = new Intent(create_Developer_profile_1.this,profile.class);
+                        startActivity(j);
+                        break;
+                    case R.id.nav_EditProfile:
+                        Intent k = new Intent(create_Developer_profile_1.this,EditProfile.class);
+                        startActivity(k);
+                        break;
+
+
+                    case R.id.nav_Create_Developer_Profile:
+                        Intent l = new Intent(create_Developer_profile_1.this,create_Developer_profile_1.class);
+                        startActivity(l);
+                        break;
+
+
+                    case R.id.nav_Edit_Developer_Profile:
+                        Intent m = new Intent(create_Developer_profile_1.this,editProfileDeveloper.class);
+                        startActivity(m);
+                        break;
+
+
+                    case R.id.nav_View_Developer_Profile:
+                        Intent n = new Intent(create_Developer_profile_1.this,Developerprofile.class);
+                        startActivity(n);
+                        break;
+
+
+                    case R.id.nav_Find_Developers:
+                        Intent o = new Intent(create_Developer_profile_1.this,findDevs.class);
+                        startActivity(o);
+                        break;
+
+                    case R.id.nav_Find_Projects:
+                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // startActivity(p);
+                        Context context = getApplicationContext();
+                        CharSequence text = "EMPTINESS!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast.makeText(context, text, duration).show();
+
+
+
+                        break;
+
+
+
+                }
+                return false;
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void NextScreen(View v)
     {
         String certifications=editTextCertifications.getText().toString().trim();
@@ -117,6 +219,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
         intent.putExtra("yearsOfExperience",yearsOfExperience);
         intent.putExtra("description",description);
         intent.putExtra("preferredide",preferredIDE);
+        intent.putExtra("Picture",Picture);
         startActivity(intent);
 
     }

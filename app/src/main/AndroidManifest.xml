@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.examples.sep4app">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +23,7 @@
         <activity android:name=".profile.EditProfile" />
         <activity android:name=".findDevs" />
         <activity android:name=".DeveloperProfile.Developerprofile" />
-        <activity android:name=".DeveloperProfile.viewDevProfile" />
+        <activity android:name=".DeveloperProfile.editProfileDeveloper"></activity>
         <activity android:name=".MainActivity"></activity>
     </application>
 
