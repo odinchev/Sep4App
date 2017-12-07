@@ -23,6 +23,7 @@
         <activity android:name=".profile.EditProfile" />
         <activity android:name=".findDevs" />
         <activity android:name=".DeveloperProfile.Developerprofile" />
+        <activity android:name=".DeveloperProfile.viewDevProfile" />
         <activity android:name=".DeveloperProfile.editProfileDeveloper"></activity>
         <activity android:name=".MainActivity"></activity>
     </application>
