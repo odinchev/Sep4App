@@ -1,15 +1,19 @@
 package com.example.examples.sep4app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
 import com.example.examples.sep4app.DeveloperProfile.developer;
 
 import java.util.List;
@@ -20,10 +24,18 @@ import com.example.examples.sep4app.DeveloperProfile.developer;
 
 class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private List<developer> list;
+    private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener {
+         void onItemClick(View view, int position);
+    }
 
 
-    public DevAdapter(List<developer> list){
+    public DevAdapter(List<developer> list, Context context, OnItemClickListener onItemClickListener){
+        this.mOnItemClickListener = onItemClickListener;
         this.list = list;
+        this.mContext = context;
     }
 
 
@@ -33,7 +45,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(final DevViewHolder holder, int position) {
+    public void onBindViewHolder(final DevViewHolder holder, final int position) {
 
         developer developer = list.get(position);
 
@@ -42,6 +54,25 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         holder.textYears.setText(developer.yearsofExperience);
         holder.textCerts.setText(developer.certifications);
         holder.textInterests.setText(developer.description);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Recycle Click" + position, Toast.LENGTH_SHORT).show();
+                mOnItemClickListener.onItemClick(view, position);
+
+            }
+        });
+
+        holder.btnShowInterest.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //TODO do button click work here
+                Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -53,6 +84,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     class DevViewHolder extends RecyclerView.ViewHolder{
 
         TextView textName, textSkills, textYears, textCerts, textInterests;
+        Button btnShowInterest;
 
 
 
@@ -64,6 +96,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
             textYears = (TextView) itemView.findViewById(R.id.text_yearsOfExp);
             textCerts = (TextView) itemView.findViewById(R.id.text_certificates);
             textInterests = (TextView) itemView.findViewById(R.id.text_interestedIn);
+            btnShowInterest = (Button) itemView.findViewById(R.id.btn_findInterest1);
 
 
         }

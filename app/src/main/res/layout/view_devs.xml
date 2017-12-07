@@ -92,7 +92,15 @@
         android:layout_toEndOf="@id/text_interest_label"
         android:text="Network security"
         android:textColor="#000" />
-
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_findInterest1"
+        android:text="+"
+        android:textColor="#000"
+        android:layout_below="@id/text_name"
+        android:layout_alignEnd="@id/text_experience_label"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
 
