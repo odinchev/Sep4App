@@ -58,15 +58,16 @@ public class CreateDevProfile_1 extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_developer_profile1);
 
-        //for the Drawer side menu
+        //for the Drawer side menu //uhm not here no no no :P
+        /*
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         navigation = (NavigationView) findViewById(R.id.navigation_view);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         //for the drawer side menu ^
-        initInstances();
+        //initInstances();
 
        // database= FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
@@ -106,14 +107,15 @@ public class CreateDevProfile_1 extends AppCompatActivity
 
 
     }
-    public boolean onOptionsItemSelected(MenuItem item){
+    /*public boolean onOptionsItemSelected(MenuItem item){
         if(mToggle.onOptionsItemSelected(item))
         {return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
-    private void initInstances() {
+    //dont need navbar here
+   /* private void initInstances() {
 
 //navbar
 
@@ -179,7 +181,7 @@ public class CreateDevProfile_1 extends AppCompatActivity
             }
         });
 
-    }
+    }*/
 
 
 

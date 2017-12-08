@@ -13,54 +13,58 @@
 
     <ImageView
         android:id="@+id/project_image2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/project_name"
+        android:id="@+id/minPro_tltrLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/project_image2"
-        android:layout_centerHorizontal="true"
-        android:text="FirstName + LastName"
-        android:textColor="#000" />
+        android:layout_toEndOf="@id/project_image2"
+        android:text="TLTR: "
+        android:textColor="#393939" />
 
     <TextView
-        android:id="@+id/text_proficient_in_label"
+        android:id="@+id/minPro_tltr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_name"
-        android:text="Proficient in: "
-        android:textColor="#000" />
+        android:layout_toEndOf="@id/minPro_tltrLabel"
+        android:textSize="14dp"
+        android:text="An array of characters that shows what the project is about in one precise sentence!"
+        android:textColor="#000"
+        android:paddingBottom="7dp"/>
 
     <TextView
-        android:id="@+id/text_skills"
+        android:id="@+id/minPro_knohoLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_name"
-        android:layout_toEndOf="@id/text_proficient_in_label"
-        android:text="Java, C# (tags)"
-        android:textColor="#000" />
+        android:layout_below="@id/minPro_tltr"
+        android:layout_toEndOf="@id/project_image2"
+        android:text="KNOW-HOW: "
+        android:textColor="#393939" />
 
     <TextView
-        android:id="@+id/text_experience_label"
+        android:id="@+id/minPro_knoho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_proficient_in_label"
-        android:text="Years of Experience: "
+        android:layout_toEndOf="@id/minPro_knohoLabel"
+        android:layout_below="@id/minPro_tltr"
+        android:text="Java, XML, Android"
+        android:textSize="14dp"
         android:textColor="#000" />
 
 
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/btn_findInterest1"
+        android:id="@+id/btn_findInterest2"
         android:text="+"
         android:textColor="#000"
         android:layout_below="@id/text_name"
         android:layout_alignEnd="@id/text_experience_label"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="0dp"
         android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

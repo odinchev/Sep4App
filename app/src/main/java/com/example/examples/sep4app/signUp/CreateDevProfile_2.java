@@ -60,7 +60,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_developer_profile2);
 
-        navigation = (NavigationView) findViewById(R.id.navigation_view);
+       /* navigation = (NavigationView) findViewById(R.id.navigation_view);
 
         //for the Drawer side menu
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
@@ -70,7 +70,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //for the drawer side menu ^^^^
-
+        */
 
         database= FirebaseDatabase.getInstance().getReference("Developers");
 
@@ -92,7 +92,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
 
         progress=(ProgressBar)findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
-        initInstances();
+        //initInstances();
 
     }
 
@@ -100,7 +100,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
 
 
 
-    private void initInstances() {
+   /* private void initInstances() {
 
 //navbar
 
@@ -170,6 +170,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
 
 
 
+*/
 
 
 
@@ -185,8 +186,7 @@ public class CreateDevProfile_2 extends AppCompatActivity {
 
 
 
-
-
+/*
 
     public boolean onOptionsItemSelected(MenuItem item){
 
@@ -202,7 +202,10 @@ public class CreateDevProfile_2 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     //for selecting stuff in the drawer menu
-    }
+    }*/
+
+
+    //TODO is this used anywhere???
     public void registerUser(View v)
     {
 
@@ -251,6 +254,8 @@ public class CreateDevProfile_2 extends AppCompatActivity {
         Intent intent =new Intent(CreateDevProfile_2.this, DevProfile.class);
         startActivity(intent);
     }
+
+    //TODO is it used somewhere???
     public void LogIn(View v)
     {
         startActivity(new Intent(this,Login.class));

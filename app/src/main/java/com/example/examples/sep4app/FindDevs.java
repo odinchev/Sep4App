@@ -172,7 +172,7 @@ public class FindDevs extends AppCompatActivity {
 
     }
 
-    private Developer viewOwnDevProfile(){
+    /*private Developer viewOwnDevProfile(){
         Developer me = new Developer();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -193,7 +193,7 @@ public class FindDevs extends AppCompatActivity {
             }
         });
         return me;
-    }
+    }*/
 
 
     public boolean onOptionsItemSelected(MenuItem item){
