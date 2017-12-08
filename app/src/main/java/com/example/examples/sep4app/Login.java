@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.signUp.signup_1;
+import com.example.examples.sep4app.signUp.Signup_1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity
     public void SignUp(View v)
     {
 
-       startActivity(new Intent(this,signup_1.class));
+       startActivity(new Intent(this,Signup_1.class));
 
     }
 }

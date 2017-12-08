@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by PC on 1.12.2017 г..
  */
 
-public class signup_1 extends AppCompatActivity
+public class Signup_1 extends AppCompatActivity
 {
     // acctual name and registration page
     EditText passWord;
@@ -113,7 +113,7 @@ public class signup_1 extends AppCompatActivity
                     User user=new User(id,name,LastName,description,null);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
-                    Intent intent =new Intent(signup_1.this,Profile.class);
+                    Intent intent =new Intent(Signup_1.this,Profile.class);
                     startActivity(intent);
 
                 }

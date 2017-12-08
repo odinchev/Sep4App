@@ -12,7 +12,7 @@ import com.example.examples.sep4app.R;
  * Created by MrWhitemount on 07-Dec-17.
  */
 
-public class viewDevProfile extends AppCompatActivity {
+public class ViewDevProfile extends AppCompatActivity {
 
     ImageView profilePicture;
     TextView name;

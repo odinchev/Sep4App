@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:backgroundTintMode="src_in"
+    android:backgroundTint="#000"
+    android:padding="15dp">
+
+
+    <ImageView
+        android:id="@+id/project_image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/project_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_image2"
+        android:layout_centerHorizontal="true"
+        android:text="FirstName + LastName"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/text_proficient_in_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_name"
+        android:text="Proficient in: "
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/text_skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_name"
+        android:layout_toEndOf="@id/text_proficient_in_label"
+        android:text="Java, C# (tags)"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/text_experience_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_proficient_in_label"
+        android:text="Years of Experience: "
+        android:textColor="#000" />
+
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_findInterest1"
+        android:text="+"
+        android:textColor="#000"
+        android:layout_below="@id/text_name"
+        android:layout_alignEnd="@id/text_experience_label"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.examples.sep4app.DeveloperProfile.Developer;
 import com.example.examples.sep4app.DeveloperProfile.DevProfile;
-import com.example.examples.sep4app.DeveloperProfile.viewDevProfile;
+import com.example.examples.sep4app.DeveloperProfile.ViewDevProfile;
 import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.Profile;
@@ -86,7 +86,7 @@ public class FindDevs extends AppCompatActivity {
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
                 //TODO picture
 
-                Intent intent = new Intent(FindDevs.this, viewDevProfile.class);
+                Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
 
                 intent.putExtras(b);
 

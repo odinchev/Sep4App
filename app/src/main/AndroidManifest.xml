@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.examples.sep4app">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,16 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signUp.signup_1" />
+        <activity android:name=".signUp.Signup_1" />
         <activity android:name=".signUp.CreateDevProfile_1" />
         <activity android:name=".signUp.CreateDevProfile_2" />
         <activity android:name=".profile.Profile" />
         <activity android:name=".profile.EditProfile" />
         <activity android:name=".FindDevs" />
         <activity android:name=".DeveloperProfile.DevProfile" />
-        <activity android:name=".DeveloperProfile.viewDevProfile" />
-        <activity android:name=".DeveloperProfile.EditDevProfile"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".DeveloperProfile.ViewDevProfile" />
+        <activity android:name=".DeveloperProfile.EditDevProfile" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".signUp.CreateProject_1" />
+        <activity android:name=".signUp.CreateProject_2" />
+        <activity android:name=".FindProjects"></activity>
     </application>
 
 </manifest>
