@@ -11,22 +11,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
 import com.example.examples.sep4app.DeveloperProfile.developer;
 import com.example.examples.sep4app.DeveloperProfile.viewDevProfile;
 import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.profile;
 import com.example.examples.sep4app.signUp.create_Developer_profile_1;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +145,7 @@ public class findDevs extends AppCompatActivity {
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(findDevs.this,Developerprofile.class);
+                        Intent n = new Intent(findDevs.this, Developerprofile.class);
                         startActivity(n);
                         break;
 
@@ -169,6 +174,29 @@ public class findDevs extends AppCompatActivity {
             }
         });
 
+    }
+
+    private developer viewOwnDevProfile(){
+        developer me = new developer();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    developer me = dataSnapshot.getValue(developer.class);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Log.d("Error","error");
+            }
+        });
+        return me;
     }
 
 

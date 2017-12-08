@@ -60,7 +60,7 @@ public class Developerprofile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
-                    developer developer=dataSnapshot.getValue(developer.class);
+                    /*developer*/ developer=dataSnapshot.getValue(developer.class);
 
                         name.setText(developer.getName() +" "+ developer.getLastName());
                         certifications.setText(developer.getCertifications());
