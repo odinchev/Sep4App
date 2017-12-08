@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.profile.User;
-import com.example.examples.sep4app.profile.profile;
+import com.example.examples.sep4app.profile.Profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -113,7 +113,7 @@ public class signup_1 extends AppCompatActivity
                     User user=new User(id,name,LastName,description,null);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
-                    Intent intent =new Intent(signup_1.this,profile.class);
+                    Intent intent =new Intent(signup_1.this,Profile.class);
                     startActivity(intent);
 
                 }

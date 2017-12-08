@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by MrWhitemount on 01-Dec-17.
  */
 
-public class developer
+public class Developer
 {
 
    // String name, tagsToString, key;
@@ -26,12 +26,12 @@ public class developer
     public String preferredIDE;
     String picture;
 
-    public developer(){
+    public Developer(){
 
     }
 
 
-    public developer(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String settags,String SetPreferredIDE,String ProfilePucture)
+    public Developer(String id, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, String settags, String SetPreferredIDE, String ProfilePucture)
     {
         // fetch name from database
         this.id=id;

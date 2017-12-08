@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".signUp.signup_1" />
-        <activity android:name=".signUp.create_Developer_profile_1" />
-        <activity android:name=".signUp.create_Developer_profile_2" />
-        <activity android:name=".profile.profile" />
+        <activity android:name=".signUp.CreateDevProfile_1" />
+        <activity android:name=".signUp.CreateDevProfile_2" />
+        <activity android:name=".profile.Profile" />
         <activity android:name=".profile.EditProfile" />
-        <activity android:name=".findDevs" />
-        <activity android:name=".DeveloperProfile.Developerprofile" />
+        <activity android:name=".FindDevs" />
+        <activity android:name=".DeveloperProfile.DevProfile" />
         <activity android:name=".DeveloperProfile.viewDevProfile" />
-        <activity android:name=".DeveloperProfile.editProfileDeveloper"></activity>
+        <activity android:name=".DeveloperProfile.EditDevProfile"></activity>
         <activity android:name=".MainActivity"></activity>
     </application>
 

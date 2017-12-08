@@ -14,13 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.findDevs;
-import com.example.examples.sep4app.signUp.create_Developer_profile_1;
+import com.example.examples.sep4app.FindDevs;
+import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-// for viewing the profile both for the user and the other users
-public class profile extends AppCompatActivity {
+// for viewing the Profile both for the user and the other users
+public class Profile extends AppCompatActivity {
 
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
@@ -79,44 +78,44 @@ public class profile extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_Main:
-                        Intent i = new Intent(profile.this, MainActivity.class);
+                        Intent i = new Intent(Profile.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(profile.this,profile.class);
+                        Intent j = new Intent(Profile.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(profile.this,EditProfile.class);
+                        Intent k = new Intent(Profile.this,EditProfile.class);
                         startActivity(k);
                         break;
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(profile.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(Profile.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(profile.this,editProfileDeveloper.class);
+                        Intent m = new Intent(Profile.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(profile.this,Developerprofile.class);
+                        Intent n = new Intent(Profile.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(profile.this,findDevs.class);
+                        Intent o = new Intent(Profile.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";

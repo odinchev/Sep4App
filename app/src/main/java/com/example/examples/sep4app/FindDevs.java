@@ -3,8 +3,6 @@ package com.example.examples.sep4app;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +12,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.developer;
+import com.example.examples.sep4app.DeveloperProfile.Developer;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
 import com.example.examples.sep4app.DeveloperProfile.viewDevProfile;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.profile.EditProfile;
-import com.example.examples.sep4app.profile.profile;
-import com.example.examples.sep4app.signUp.create_Developer_profile_1;
+import com.example.examples.sep4app.profile.Profile;
+import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,14 +32,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class findDevs extends AppCompatActivity {
+public class FindDevs extends AppCompatActivity {
 
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     private RecyclerView recyclerView;
-    private List<developer> devList;
+    private List<Developer> devList;
     private DevAdapter adapter;
 
     private FirebaseDatabase database;
@@ -79,7 +75,7 @@ public class findDevs extends AppCompatActivity {
         adapter = new DevAdapter(devList, this, new DevAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                developer devClicked = devList.get(position);
+                Developer devClicked = devList.get(position);
 
                 Bundle b = new Bundle();
                 b.putString("mName", devClicked.name + " " + devClicked.lastName);
@@ -90,7 +86,7 @@ public class findDevs extends AppCompatActivity {
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
                 //TODO picture
 
-                Intent intent = new Intent(findDevs.this, viewDevProfile.class);
+                Intent intent = new Intent(FindDevs.this, viewDevProfile.class);
 
                 intent.putExtras(b);
 
@@ -119,44 +115,44 @@ public class findDevs extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_Main:
-                        Intent i = new Intent(findDevs.this, MainActivity.class);
+                        Intent i = new Intent(FindDevs.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(findDevs.this,profile.class);
+                        Intent j = new Intent(FindDevs.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(findDevs.this,EditProfile.class);
+                        Intent k = new Intent(FindDevs.this,EditProfile.class);
                         startActivity(k);
                         break;
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(findDevs.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(FindDevs.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(findDevs.this,editProfileDeveloper.class);
+                        Intent m = new Intent(FindDevs.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(findDevs.this, Developerprofile.class);
+                        Intent n = new Intent(FindDevs.this, DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(findDevs.this,findDevs.class);
+                        Intent o = new Intent(FindDevs.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
@@ -176,15 +172,15 @@ public class findDevs extends AppCompatActivity {
 
     }
 
-    private developer viewOwnDevProfile(){
-        developer me = new developer();
+    private Developer viewOwnDevProfile(){
+        Developer me = new Developer();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
-                    developer me = dataSnapshot.getValue(developer.class);
+                    Developer me = dataSnapshot.getValue(Developer.class);
 
 
                 }
@@ -214,7 +210,7 @@ public class findDevs extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                devList.add(dataSnapshot.getValue(developer.class));
+                devList.add(dataSnapshot.getValue(Developer.class));
                 adapter.notifyDataSetChanged();
             }
 
@@ -222,8 +218,8 @@ public class findDevs extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(developer.class));
-                devList.set(index, dataSnapshot.getValue(developer.class));
+                int index = getItemIndex(dataSnapshot.getValue(Developer.class));
+                devList.set(index, dataSnapshot.getValue(Developer.class));
                 adapter.notifyItemChanged(index);
             }
 
@@ -231,7 +227,7 @@ public class findDevs extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(developer.class));
+                int index = getItemIndex(dataSnapshot.getValue(Developer.class));
 
                 devList.remove(index);
                 adapter.notifyItemRemoved(index);
@@ -250,7 +246,7 @@ public class findDevs extends AppCompatActivity {
         });
     }
 
-    private int getItemIndex(developer developer){
+    private int getItemIndex(Developer developer){
 
         int index = savePos;
 

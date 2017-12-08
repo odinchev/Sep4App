@@ -11,7 +11,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +19,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.findDevs;
-import com.example.examples.sep4app.signUp.create_Developer_profile_1;
+import com.example.examples.sep4app.FindDevs;
+import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +39,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by PC on 1.12.2017 г..
@@ -143,7 +141,7 @@ public class EditProfile extends AppCompatActivity
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(EditProfile.this,profile.class);
+                        Intent j = new Intent(EditProfile.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
@@ -153,30 +151,30 @@ public class EditProfile extends AppCompatActivity
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(EditProfile.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(EditProfile.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(EditProfile.this,editProfileDeveloper.class);
+                        Intent m = new Intent(EditProfile.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(EditProfile.this,Developerprofile.class);
+                        Intent n = new Intent(EditProfile.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(EditProfile.this,findDevs.class);
+                        Intent o = new Intent(EditProfile.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";

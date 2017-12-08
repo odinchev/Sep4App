@@ -23,11 +23,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.findDevs;
+import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.User;
-import com.example.examples.sep4app.profile.profile;
-import com.example.examples.sep4app.signUp.create_Developer_profile_1;
+import com.example.examples.sep4app.profile.Profile;
+import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +47,7 @@ import java.io.IOException;
  * Created by PC on 1.12.2017 г..
  */
 
-public class editProfileDeveloper extends AppCompatActivity
+public class EditDevProfile extends AppCompatActivity
 
 {
 
@@ -141,7 +141,7 @@ public class editProfileDeveloper extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 if (dataSnapshot.exists()) {
-                    developer developer = dataSnapshot.getValue(developer.class);
+                    Developer developer = dataSnapshot.getValue(Developer.class);
                     User user = dataSnapshot.getValue(User.class);
 
                     Description.setText(developer.getDescription());
@@ -173,44 +173,44 @@ public class editProfileDeveloper extends AppCompatActivity
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_Main:
-                        Intent i = new Intent(editProfileDeveloper.this, MainActivity.class);
+                        Intent i = new Intent(EditDevProfile.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(editProfileDeveloper.this,profile.class);
+                        Intent j = new Intent(EditDevProfile.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(editProfileDeveloper.this,EditProfile.class);
+                        Intent k = new Intent(EditDevProfile.this,EditProfile.class);
                         startActivity(k);
                         break;
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(editProfileDeveloper.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(EditDevProfile.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(editProfileDeveloper.this,editProfileDeveloper.class);
+                        Intent m = new Intent(EditDevProfile.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(editProfileDeveloper.this,Developerprofile.class);
+                        Intent n = new Intent(EditDevProfile.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(editProfileDeveloper.this,findDevs.class);
+                        Intent o = new Intent(EditDevProfile.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
@@ -280,8 +280,8 @@ public class editProfileDeveloper extends AppCompatActivity
         FirebaseUser user = mAuth.getCurrentUser();
 
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        developer Editdeveloper = new developer(id, name, lastName, certifications, YearsofExperience, description, skills, PreferredIDE, profileImageURL);
-        database.child(id).setValue(Editdeveloper);
+        Developer editDeveloper = new Developer(id, name, lastName, certifications, YearsofExperience, description, skills, PreferredIDE, profileImageURL);
+        database.child(id).setValue(editDeveloper);
 
 
     }
@@ -325,7 +325,7 @@ public class editProfileDeveloper extends AppCompatActivity
                 public void onFailure(@NonNull Exception e) {
 
 
-                    Toast.makeText(editProfileDeveloper.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditDevProfile.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
 
                 }

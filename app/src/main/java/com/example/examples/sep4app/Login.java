@@ -11,14 +11,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.profile.profile;
 import com.example.examples.sep4app.signUp.signup_1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class login extends AppCompatActivity
+public class Login extends AppCompatActivity
 {
     FirebaseAuth mAuth;
     EditText Email;
@@ -73,7 +72,7 @@ public class login extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    Intent intent=new Intent(login.this,MainActivity.class);
+                    Intent intent=new Intent(Login.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

@@ -14,14 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.findDevs;
+import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.User;
-import com.example.examples.sep4app.profile.profile;
+import com.example.examples.sep4app.profile.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by PC on 1.12.2017 г..
  */
 
-public class create_Developer_profile_1 extends AppCompatActivity
+public class CreateDevProfile_1 extends AppCompatActivity
 {
 
     private DrawerLayout mDrawerLayout;
@@ -124,44 +124,44 @@ public class create_Developer_profile_1 extends AppCompatActivity
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_Main:
-                        Intent i = new Intent(create_Developer_profile_1.this, MainActivity.class);
+                        Intent i = new Intent(CreateDevProfile_1.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(create_Developer_profile_1.this,profile.class);
+                        Intent j = new Intent(CreateDevProfile_1.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(create_Developer_profile_1.this,EditProfile.class);
+                        Intent k = new Intent(CreateDevProfile_1.this,EditProfile.class);
                         startActivity(k);
                         break;
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(create_Developer_profile_1.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(CreateDevProfile_1.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(create_Developer_profile_1.this,editProfileDeveloper.class);
+                        Intent m = new Intent(CreateDevProfile_1.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(create_Developer_profile_1.this,Developerprofile.class);
+                        Intent n = new Intent(CreateDevProfile_1.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(create_Developer_profile_1.this,findDevs.class);
+                        Intent o = new Intent(CreateDevProfile_1.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
@@ -210,7 +210,7 @@ public class create_Developer_profile_1 extends AppCompatActivity
         String description=editTextDescription.getText().toString().trim();
         String preferredIDE=editTextPrefferredIDE.getText().toString().trim();
 
-        Intent intent =new Intent(this,create_Developer_profile_2.class);
+        Intent intent =new Intent(this,CreateDevProfile_2.class);
         intent.putExtra("name",name);
         intent.putExtra("LastName",LastName);
         intent.putExtra("email",email);

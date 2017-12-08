@@ -14,12 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.profile.EditProfile;
-import com.example.examples.sep4app.profile.profile;
-import com.example.examples.sep4app.signUp.create_Developer_profile_1;
-import com.example.examples.sep4app.signUp.create_Developer_profile_2;
+import com.example.examples.sep4app.profile.Profile;
+import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -111,7 +110,7 @@ initInstances();
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(MainActivity.this,profile.class);
+                        Intent j = new Intent(MainActivity.this,Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
@@ -121,30 +120,30 @@ initInstances();
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(MainActivity.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(MainActivity.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(MainActivity.this,editProfileDeveloper.class);
+                        Intent m = new Intent(MainActivity.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(MainActivity.this,Developerprofile.class);
+                        Intent n = new Intent(MainActivity.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(MainActivity.this,findDevs.class);
+                        Intent o = new Intent(MainActivity.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
@@ -190,12 +189,12 @@ initInstances();
 
     private void go2DevSearch() {
 
-        Intent intent = new Intent(MainActivity.this, findDevs.class);
+        Intent intent = new Intent(MainActivity.this, FindDevs.class);
         startActivity(intent);
     }
 
     private void go2CreateDev() {
-        Intent intent =new Intent(MainActivity.this,create_Developer_profile_1.class);
+        Intent intent =new Intent(MainActivity.this,CreateDevProfile_1.class);
         startActivity(intent);
     }
 
@@ -203,7 +202,7 @@ initInstances();
     }
     public void CreateDeveloper(View v)
     {
-        Intent intent =new Intent(MainActivity.this,create_Developer_profile_1.class);
+        Intent intent =new Intent(MainActivity.this,CreateDevProfile_1.class);
         startActivity(intent);
     }
     public void EditProfile(View v)
@@ -213,13 +212,13 @@ initInstances();
     }
     public void EditDeveloperProfile(View v)
     {
-        Intent intent=new Intent(MainActivity.this,editProfileDeveloper.class);
+        Intent intent=new Intent(MainActivity.this,EditDevProfile.class);
         startActivity(intent);
 
     }
     public void goToProfile(View v)
     {
-        Intent intent=new Intent(MainActivity.this,profile.class);
+        Intent intent=new Intent(MainActivity.this,Profile.class);
         startActivity(intent);
     }
 }

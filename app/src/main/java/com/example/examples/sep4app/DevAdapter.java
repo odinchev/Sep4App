@@ -1,29 +1,24 @@
 package com.example.examples.sep4app;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.developer;
+import com.example.examples.sep4app.DeveloperProfile.Developer;
 
 import java.util.List;
-import com.example.examples.sep4app.DeveloperProfile.developer;
+
 /**
  * Created by MrWhitemount on 01-Dec-17.
  */
 
 class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
-    private List<developer> list;
+    private List<Developer> list;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
 
@@ -32,7 +27,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     }
 
 
-    public DevAdapter(List<developer> list, Context context, OnItemClickListener onItemClickListener){
+    public DevAdapter(List<Developer> list, Context context, OnItemClickListener onItemClickListener){
         this.mOnItemClickListener = onItemClickListener;
         this.list = list;
         this.mContext = context;
@@ -47,7 +42,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     @Override
     public void onBindViewHolder(final DevViewHolder holder, final int position) {
 
-        developer developer = list.get(position);
+        Developer developer = list.get(position);
 
         holder.textName.setText(developer.name + " " + developer.lastName);
         holder.textSkills.setText(developer.tags);

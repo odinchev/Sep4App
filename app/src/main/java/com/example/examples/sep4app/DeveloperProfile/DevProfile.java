@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.profile.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,8 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-// for viewing the profile both for the user and the other users
-public class Developerprofile extends AppCompatActivity {
+// for viewing the Profile both for the user and the other users
+public class DevProfile extends AppCompatActivity {
 
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
@@ -27,7 +26,7 @@ public class Developerprofile extends AppCompatActivity {
     TextView Description;
     TextView Skills;
     TextView preferredIDE;
-    public developer developer;
+    public Developer developer;
     DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class Developerprofile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
-                    /*developer*/ developer=dataSnapshot.getValue(developer.class);
+                    /*Developer*/ developer=dataSnapshot.getValue(Developer.class);
 
                         name.setText(developer.getName() +" "+ developer.getLastName());
                         certifications.setText(developer.getCertifications());

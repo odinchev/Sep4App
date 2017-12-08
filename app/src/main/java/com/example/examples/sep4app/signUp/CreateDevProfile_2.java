@@ -2,7 +2,6 @@ package com.example.examples.sep4app.signUp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,16 +15,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.examples.sep4app.DeveloperProfile.Developerprofile;
-import com.example.examples.sep4app.DeveloperProfile.developer;
-import com.example.examples.sep4app.DeveloperProfile.editProfileDeveloper;
+import com.example.examples.sep4app.DeveloperProfile.DevProfile;
+import com.example.examples.sep4app.DeveloperProfile.Developer;
+import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
-import com.example.examples.sep4app.findDevs;
-import com.example.examples.sep4app.login;
+import com.example.examples.sep4app.FindDevs;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.profile.EditProfile;
+import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.profile.User;
-import com.example.examples.sep4app.profile.profile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class create_Developer_profile_2 extends AppCompatActivity {
+public class CreateDevProfile_2 extends AppCompatActivity {
  private   NavigationView navigation;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -112,44 +111,44 @@ public class create_Developer_profile_2 extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_Main:
-                        Intent i = new Intent(create_Developer_profile_2.this, MainActivity.class);
+                        Intent i = new Intent(CreateDevProfile_2.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case R.id.nav_Profile:
-                        Intent j = new Intent(create_Developer_profile_2.this,profile.class);
+                        Intent j = new Intent(CreateDevProfile_2.this,Profile.class);
                        startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(create_Developer_profile_2.this,EditProfile.class);
+                        Intent k = new Intent(CreateDevProfile_2.this,EditProfile.class);
                         startActivity(k);
                         break;
 
 
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(create_Developer_profile_2.this,create_Developer_profile_1.class);
+                        Intent l = new Intent(CreateDevProfile_2.this,CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(create_Developer_profile_2.this,editProfileDeveloper.class);
+                        Intent m = new Intent(CreateDevProfile_2.this,EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(create_Developer_profile_2.this,Developerprofile.class);
+                        Intent n = new Intent(CreateDevProfile_2.this,DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(create_Developer_profile_2.this,findDevs.class);
+                        Intent o = new Intent(CreateDevProfile_2.this,FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(create_Developer_profile_2.this,FindProjects.class);
+                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                        // startActivity(p);
                         Context context = getApplicationContext();
                             CharSequence text = "EMPTINESS!";
@@ -247,14 +246,14 @@ public class create_Developer_profile_2 extends AppCompatActivity {
         String skills=editTextSkills.getText().toString().trim();
 
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        developer developer =new developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
+        Developer developer =new Developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
         database.child(id).setValue(developer);
-        Intent intent =new Intent(create_Developer_profile_2.this, Developerprofile.class);
+        Intent intent =new Intent(CreateDevProfile_2.this, DevProfile.class);
         startActivity(intent);
     }
     public void LogIn(View v)
     {
-        startActivity(new Intent(this,login.class));
+        startActivity(new Intent(this,Login.class));
     }
     // Using two different layouts
 

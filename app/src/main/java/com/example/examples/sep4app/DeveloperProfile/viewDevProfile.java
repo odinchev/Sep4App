@@ -44,7 +44,7 @@ public class viewDevProfile extends AppCompatActivity {
             yearsofExperience.setText(b.getString("mYearsOfExperience"));
             Skills.setText(b.getString("mSkills"));
             preferredIDE.setText(b.getString("mPreferredIDE"));
-            //TODO set profile pic
+            //TODO set Profile pic
         }
 
     }
