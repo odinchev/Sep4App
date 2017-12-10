@@ -23,6 +23,7 @@ import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.project.Project;
 import com.example.examples.sep4app.project.ProjectActivity;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
+import com.example.examples.sep4app.signUp.CreateDevProfile_2;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,7 +53,7 @@ public class FindProjects extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_projects);
+       // setContentView(R.layout.activity_find_projects);
         //for the Drawer side menu
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -67,7 +68,7 @@ public class FindProjects extends AppCompatActivity {
 
         projectList = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.projects_list);
+      //  recyclerView = (RecyclerView) findViewById(R.id.projects_list);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager lim = new LinearLayoutManager(this);
         lim.setOrientation(LinearLayoutManager.VERTICAL);
@@ -154,7 +155,7 @@ public class FindProjects extends AppCompatActivity {
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
+                         //Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
                         // startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
