@@ -1,5 +1,9 @@
 package com.example.examples.sep4app.Friends;
 
+import com.example.examples.sep4app.DeveloperProfile.Developer;
+
+import java.util.ArrayList;
+
 /**
  * Created by PC on 12.12.2017 г..
  */
@@ -9,15 +13,15 @@ public class Friends
     public int projectID;
     public int user1ID;
     public int user2ID;
+    ArrayList<Developer> FriendsList=new ArrayList<>();
     public Friends()
     {
 
     }
-    public Friends(int projectID,int user1ID,int user2ID)
+    public Friends(int projectID)
     {
         this.projectID=projectID;
-        this.user1ID=user1ID;
-        this.user2ID=user2ID;
+
     }
     public void setProjectID(int id)
     {
@@ -31,9 +35,19 @@ public class Friends
     {
         this.user2ID=id;
     }
+    public void AddtoList(Developer developer)
+    {
+        FriendsList.add(developer);
+    }
+
     public int getProjectID()
     {
         return projectID;
+    }
+
+    public ArrayList getList()
+    {
+        return FriendsList;
     }
     public int getUser1ID()
     {
