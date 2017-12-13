@@ -2,6 +2,8 @@ package com.example.examples.sep4app;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.EventLogTags;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.DeveloperProfile.Developer;
+import com.example.examples.sep4app.Friends.Friends;
+import com.example.examples.sep4app.profile.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +33,11 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private List<Developer> list;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
+    ArrayList <Developer>FriendsList=new ArrayList<>();
+
+// friends fields
+FirebaseAuth mAuth;
+    DatabaseReference database;
 
     public interface OnItemClickListener {
          void onItemClick(View view, int position);
@@ -31,6 +48,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         this.mOnItemClickListener = onItemClickListener;
         this.list = list;
         this.mContext = context;
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference().child("Projects");
     }
 
 
@@ -59,11 +78,32 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
             }
         });
 
+
+
+
+
         holder.btnShowInterest.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //TODO do button click work here
+                // find project id
+                // instantiate new friends object
+                // use addtoList method
+                // put object in database
+
+
+
+
+                            String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            Friends friend=new Friends(id);
+                            friend.AddtoList(list.get(position));
+                            database.child(id).setValue(friend);
+
+
+
+
+
                 Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
             }
         });

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Friends
 {
-    public int projectID;
+    public String projectID;
     public int user1ID;
     public int user2ID;
     ArrayList<Developer> FriendsList=new ArrayList<>();
@@ -18,12 +18,12 @@ public class Friends
     {
 
     }
-    public Friends(int projectID)
+    public Friends(String projectID)
     {
         this.projectID=projectID;
 
     }
-    public void setProjectID(int id)
+    public void setProjectID(String id)
     {
         this.projectID=id;
     }
@@ -40,7 +40,7 @@ public class Friends
         FriendsList.add(developer);
     }
 
-    public int getProjectID()
+    public String getProjectID()
     {
         return projectID;
     }
