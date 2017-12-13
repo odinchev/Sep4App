@@ -53,7 +53,8 @@ public class FindProjects extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_find_projects);
+
+        setContentView(R.layout.activity_find_projects);
         //for the Drawer side menu
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -68,7 +69,7 @@ public class FindProjects extends AppCompatActivity {
 
         projectList = new ArrayList<>();
 
-      //  recyclerView = (RecyclerView) findViewById(R.id.projects_list);
+       recyclerView = (RecyclerView) findViewById(R.id.projects_list);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager lim = new LinearLayoutManager(this);
         lim.setOrientation(LinearLayoutManager.VERTICAL);
