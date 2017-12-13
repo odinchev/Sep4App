@@ -4,10 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <item
+
     android:id="@+id/nav_Main"
     android:title="Main"
+    android:icon="@drawable/ic_home_black_24dp"
+
 />
     <item
+        android:icon="@drawable/ic_account_circle_black_24dp"
         android:id="@+id/nav_Profile"
 
         android:title="Profile"
@@ -16,18 +20,20 @@
 
 
     <item
+        android:icon="@drawable/ic_edit_black_24dp"
         android:id="@+id/nav_EditProfile"
 
         android:title="Edit Profile"
           />
     <item
+        android:icon="@drawable/ic_face_black_24dp"
         android:id="@+id/nav_Create_Developer_Profile"
 
         android:title="Create Developer Profile"
         />
     <item
         android:id="@+id/nav_Edit_Developer_Profile"
-
+android:icon="@drawable/ic_settings_black_24dp"
         android:title="Edit Developer Profile"
 
 
@@ -37,9 +43,10 @@
         />
 
 <item
-
+android:icon="@drawable/ic_contacts_black_24dp"
     android:id="@+id/nav_View_Developer_Profile"
     android:title="View Developer Profile"
+
 
 />
 
@@ -47,10 +54,10 @@
 
         android:id="@+id/nav_Find_Developers"
         android:title="Find Developers"
-
+       android:icon="@drawable/ic_person_add_black_24dp"
         />
     <item
-
+       android:icon="@drawable/ic_find_in_page_black_24dp"
         android:id="@+id/nav_Find_Projects"
         android:title="Find Projects"
 
