@@ -19,6 +19,7 @@ import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
+import com.example.examples.sep4app.signUp.CreateProject_1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -185,6 +186,8 @@ initInstances();
     }
 
     private void go2ProjectSearch() {
+        Intent intent =new Intent(MainActivity.this,FindProjects.class);
+        startActivity(intent);
     }
 
     private void go2DevSearch() {
@@ -199,6 +202,8 @@ initInstances();
     }
 
     private void go2CreateProject() {
+        Intent intent =new Intent(MainActivity.this,CreateProject_1.class);
+        startActivity(intent);
     }
     public void CreateDeveloper(View v)
     {

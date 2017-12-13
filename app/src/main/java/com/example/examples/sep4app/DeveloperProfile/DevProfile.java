@@ -64,7 +64,7 @@ public class DevProfile extends AppCompatActivity {
                         name.setText(developer.getName() +" "+ developer.getLastName());
                         certifications.setText(developer.getCertifications());
                        yearsofExperience.setText(developer.getYearsofExperience());
-                       Skills.setText(developer.getTags());
+                       Skills.setText(developer.getSkills().toString());
                        Description.setText(developer.getDescription());
                        preferredIDE.setText(developer.getide());
 

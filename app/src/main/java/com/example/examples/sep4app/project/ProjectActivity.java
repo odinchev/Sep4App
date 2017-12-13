@@ -37,7 +37,7 @@ public class ProjectActivity extends AppCompatActivity {
         Bundle b = in.getExtras();
         if( b != null){
             name.setText(b.getString("mName"));
-            reqSkill.setText(b.getString("mReqSkills"));
+            reqSkill.setText(b.getStringArrayList("mReqSkills").toString());
             reqExp.setText(b.getString("mReqExp"));
             otherReqs.setText(b.getString("mOtherReqs"));
             duration.setText(b.getString("mDuration"));

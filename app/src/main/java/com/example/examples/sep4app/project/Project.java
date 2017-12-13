@@ -2,20 +2,23 @@ package com.example.examples.sep4app.project;
 
 import android.media.Image;
 
+import java.util.List;
+
 /**
  * Created by MrWhitemount on 08-Dec-17.
  */
 
 public class Project {
 
-    private String id, name, reqSkills, reqExp, otherReqs, duration, summary;
+    private String id, name, reqExp, otherReqs, duration, summary;
+    private List<String> reqSkills;
     //private Image projectImage
 
     public Project(){
 
     }
 
-    public Project(String id, String name, String reqSkills, String reqExp, String otherReqs, String duration, String summary) {
+    public Project(String id, String name, List<String> reqSkills, String reqExp, String otherReqs, String duration, String summary) {
         this.id = id;
         this.name = name;
         this.reqSkills = reqSkills;
@@ -38,11 +41,11 @@ public class Project {
         this.name = name;
     }
 
-    public String getReqSkills() {
+    public List<String> getReqSkills() {
         return reqSkills;
     }
 
-    public void setReqSkills(String reqSkills) {
+    public void setReqSkills(List<String> reqSkills) {
         this.reqSkills = reqSkills;
     }
 

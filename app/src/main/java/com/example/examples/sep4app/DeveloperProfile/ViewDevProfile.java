@@ -42,7 +42,7 @@ public class ViewDevProfile extends AppCompatActivity {
             certifications.setText(b.getString("mCertifications"));
             Description.setText(b.getString("mDescription"));
             yearsofExperience.setText(b.getString("mYearsOfExperience"));
-            Skills.setText(b.getString("mSkills"));
+            Skills.setText(b.getStringArrayList("mSkills").toString());
             preferredIDE.setText(b.getString("mPreferredIDE"));
             //TODO set Profile pic
         }

@@ -127,14 +127,24 @@
                 android:text="Skills"
                 android:textAlignment="center" />
 
-            <EditText
+            <!--<EditText
                 android:id="@+id/editTextSkills"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Skills"
-                android:textAlignment="center" />
+                android:textAlignment="center" />-->
+
+            <com.example.examples.sep4app.MultiSelectionSpinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SkillsLabel"/>
 
             <TextView
                 android:id="@+id/PreferredIDELabel"

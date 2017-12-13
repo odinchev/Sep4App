@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewHint1" />
 
-        <EditText
+        <!--<EditText
             android:id="@+id/editText_proSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +111,16 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_proExp" />
+            app:layout_constraintTop_toBottomOf="@+id/editText_proExp" /> -->
+        <com.example.examples.sep4app.MultiSelectionSpinner
+            android:id="@+id/spinner_proSkills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_proExp"/>
 
         <TextView
             android:id="@+id/textViewHint1"
@@ -138,7 +147,7 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText_proSkills" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_proSkills" />
 
 
 

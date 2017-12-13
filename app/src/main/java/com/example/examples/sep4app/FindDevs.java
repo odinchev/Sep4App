@@ -79,10 +79,10 @@ public class FindDevs extends AppCompatActivity {
 
                 Bundle b = new Bundle();
                 b.putString("mName", devClicked.name + " " + devClicked.lastName);
-                b.putString("mCertifications", devClicked.certificates);
+                b.putString("mCertifications", devClicked.certifications);
                 b.putString("mYearsOfExperience", devClicked.yearsofExperience);
                 b.putString("mDescription", devClicked.description);
-                b.putString("mSkills", devClicked.tags);
+                b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
                 //TODO picture
 

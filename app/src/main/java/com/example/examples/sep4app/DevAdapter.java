@@ -45,7 +45,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         Developer developer = list.get(position);
 
         holder.textName.setText(developer.name + " " + developer.lastName);
-        holder.textSkills.setText(developer.tags);
+        holder.textSkills.setText(developer.skills.toString()); //TODO correct this, right now a stub
         holder.textYears.setText(developer.yearsofExperience);
         holder.textCerts.setText(developer.certifications);
         holder.textInterests.setText(developer.description);

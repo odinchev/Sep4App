@@ -1,6 +1,7 @@
 package com.example.examples.sep4app.DeveloperProfile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,7 +23,7 @@ public class Developer
    public  String certifications;
    public String yearsofExperience;
    public String description;
-   public String tags;
+   public List<String> skills;
     public String preferredIDE;
     String picture;
 
@@ -31,7 +32,7 @@ public class Developer
     }
 
 
-    public Developer(String id, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, String settags, String SetPreferredIDE, String ProfilePucture)
+    public Developer(String id, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture)
     {
         // fetch name from database
         this.id=id;
@@ -40,7 +41,7 @@ public class Developer
         this.certifications=Setcertifications;
         this.yearsofExperience=SetYearsofExperience;
         this.description=Setdescription;
-        this.tags=settags;
+        this.skills=skills;
         this.preferredIDE=SetPreferredIDE;
         this.picture=ProfilePucture;
     }
@@ -117,9 +118,9 @@ public class Developer
     {
         this.description=SetDescription;
     }
-    public void SetTags(String Tags)
+    public void SetSkills(List<String> Tags)
     {
-        this.tags=Tags;
+        this.skills=Tags;
     }
     public void Setide(String Setpreferredide)
     {
@@ -153,9 +154,9 @@ public class Developer
     {
         return preferredIDE;
     }
-    public String getTags()
+    public List<String> getSkills()
     {
-        return tags;
+        return skills;
     }
     public String getPicture()
     {

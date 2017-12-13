@@ -27,6 +27,7 @@
         <activity android:name=".DeveloperProfile.DevProfile" />
         <activity android:name=".DeveloperProfile.ViewDevProfile" />
         <activity android:name=".DeveloperProfile.EditDevProfile" />
+        <activity android:name=".project.ProjectActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".signUp.CreateProject_1" />
         <activity android:name=".signUp.CreateProject_2" />

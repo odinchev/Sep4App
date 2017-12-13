@@ -186,25 +186,6 @@ public class CreateDevProfile_1 extends AppCompatActivity
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void NextScreen(View v)
     {
         String certifications=editTextCertifications.getText().toString().trim();

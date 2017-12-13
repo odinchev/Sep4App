@@ -81,7 +81,7 @@ public class FindProjects extends AppCompatActivity {
 
                 Bundle b = new Bundle();
                 b.putString("mName", proClicked.getName());
-                b.putString("mReqSkills", proClicked.getReqSkills());
+                b.putStringArrayList("mReqSkills", (ArrayList)proClicked.getReqSkills());
                 b.putString("mReqExp", proClicked.getReqExp());
                 b.putString("mOtherReqs", proClicked.getOtherReqs());
                 b.putString("mDuration", proClicked.getDuration());

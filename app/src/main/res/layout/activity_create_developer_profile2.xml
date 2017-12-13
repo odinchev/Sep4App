@@ -24,7 +24,7 @@
         android:text="Sign up"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSkills" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -81,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMoreInformation" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextSkills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +95,17 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInterests" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewInterests" />-->
+
+    <com.example.examples.sep4app.MultiSelectionSpinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInterests"/>
 
     <TextView
         android:id="@+id/textViewInterests"

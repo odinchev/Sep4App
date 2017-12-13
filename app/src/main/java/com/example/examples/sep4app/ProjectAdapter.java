@@ -47,7 +47,7 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHold
         Project pro = list.get(position);
 
         holder.textSummary.setText(pro.getSummary());
-        holder.textSkills.setText(pro.getReqSkills());
+        holder.textSkills.setText(pro.getReqSkills().toString());
         //TODO add the image
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

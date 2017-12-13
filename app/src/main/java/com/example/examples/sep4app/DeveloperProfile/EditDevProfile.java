@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.MainActivity;
+import com.example.examples.sep4app.MultiSelectionSpinner;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.profile.EditProfile;
@@ -42,12 +43,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PC on 1.12.2017 г..
  */
 
-public class EditDevProfile extends AppCompatActivity
+public class EditDevProfile extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener
 
 {
 
@@ -60,7 +63,7 @@ public class EditDevProfile extends AppCompatActivity
     EditText yearsofExperience;
     EditText Description;
     EditText preferredIDE;
-    EditText Skills;
+    //EditText Skills;
     Button Save;
     Uri uriProfileImage;
     String profileImageURL;
@@ -71,6 +74,8 @@ public class EditDevProfile extends AppCompatActivity
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+
+    private List<String> skills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +90,7 @@ public class EditDevProfile extends AppCompatActivity
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //for the drawer side menu ^
-        initInstances();
+        //initInstances();
 
 
 
@@ -102,11 +107,21 @@ public class EditDevProfile extends AppCompatActivity
         Certifications = (EditText) findViewById(R.id.editTextCertificationsEdit);
         yearsofExperience = (EditText) findViewById(R.id.editTextYearsOfExperienceEdit);
         Description = (EditText) findViewById(R.id.editTextDescriptionEdit);
-        Skills = (EditText) findViewById(R.id.editTextSkills);
+        //Skills = (EditText) findViewById(R.id.editTextSkills);
         preferredIDE = (EditText) findViewById(R.id.editTextPreferredIDEEdit);
         Save = (Button) findViewById(R.id.SaveProfileEdit);
         database = FirebaseDatabase.getInstance().getReference("Developers");
         Users = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        //spinner
+        skills = new ArrayList<>();
+        final String[] tags = {
+                "C", "C++", "C#", "Java",
+                "JavaScript", "Python", "PHP", "SQL"};
+        MultiSelectionSpinner multiSelectionSpinner = (MultiSelectionSpinner) findViewById(R.id.spinner);
+        multiSelectionSpinner.setItems(tags);
+        multiSelectionSpinner.setSelection(new int[]{2, 6});
+        multiSelectionSpinner.setListener(this);
         // Fetch data from database
 
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
@@ -161,10 +176,24 @@ public class EditDevProfile extends AppCompatActivity
     }
 
 
+    @Override
+    public void selectedIndices(List<Integer> indices) {
 
-    private void initInstances() {
+    }
 
-//navbar
+    @Override
+    public void selectedStrings(List<String> strings) {
+        //Toast.makeText(this, strings.toString(), Toast.LENGTH_LONG).show();
+        skills = strings;
+        Toast.makeText(this, skills.toString(), Toast.LENGTH_LONG).show();
+
+    }
+
+
+
+    /*private void initInstances() {
+
+
 
 
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -237,7 +266,7 @@ public class EditDevProfile extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
+    */
 
 
 
@@ -264,6 +293,7 @@ public class EditDevProfile extends AppCompatActivity
     public void SaveProfiletoDatabase(View v)
     {
         SaveUserInformation();
+        finish();
     }
 
     public void SaveUserInformation()
@@ -273,7 +303,7 @@ public class EditDevProfile extends AppCompatActivity
         String certifications = Certifications.getText().toString().trim();
         String YearsofExperience = yearsofExperience.getText().toString().trim();
         String description = Description.getText().toString().trim();
-        String skills = Skills.getText().toString().trim();
+        //List<String> skills = {Skills.getText().toString()};
         String PreferredIDE = preferredIDE.getText().toString().trim();
 
 
