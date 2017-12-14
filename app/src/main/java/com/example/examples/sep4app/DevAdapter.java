@@ -38,6 +38,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     // friends fields
     FirebaseAuth mAuth;
     DatabaseReference database;
+    String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+    Friends friend=new Friends(id);
 
     public interface OnItemClickListener {
          void onItemClick(View view, int position);
@@ -105,12 +107,12 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
                     public void onDataChange(DataSnapshot dataSnapshot)
                     {
                         if (dataSnapshot.exists()) {
-                            String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            Friends friend=new Friends(id);
+
+
                             Developer Developer=list.get(position);
                             friend.AddtoList(Developer);
                             database.child(id).setValue(friend);
-
+                            Toast.makeText(mContext,"Developer added to the project", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
