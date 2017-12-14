@@ -32,19 +32,71 @@ public class Developer
     }
 
 
-    public Developer(String id, String  name, String  lastName, String  certifications, String yearsofExperience, String description, List<String> skills, String preferredIDE, String ProfilePucture)
+    public Developer(String id, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture)
     {
         // fetch name from database
         this.id=id;
-        this.name= name;
-        this.lastName= lastName;
-        this.certifications= certifications;
-        this.yearsofExperience=yearsofExperience;
-        this.description= description;
+        this.name=Setname;
+        this.lastName=SetlastName;
+        this.certifications=Setcertifications;
+        this.yearsofExperience=SetYearsofExperience;
+        this.description=Setdescription;
         this.skills=skills;
-        this.preferredIDE=preferredIDE;
+        this.preferredIDE=SetPreferredIDE;
         this.picture=ProfilePucture;
     }
+
+/**
+    public Developer(String firstName, String lastName, String tagsToString, String key, String yearsOfExp,String interests, String certificates, String email, String linkedIn) {
+        this.name = firstName + " " + lastName;
+        this.tagsToString = tagsToString;
+        this.yearsOfExp = yearsOfExp;
+        this.key = key;
+        this.yearsOfExp = yearsOfExp;
+        this.interests = interests;
+        this.certificates = certificates;
+        this.email = email;
+        this.linkedIn = linkedIn;
+    }
+
+    public Developer(String firstName, String lastName, String tagsToString, String yearsOfExp,String interests, String certificates, String email, String linkedIn) {
+        this.name = firstName + " " + lastName;
+        this.tagsToString = tagsToString;
+        this.yearsOfExp = yearsOfExp;
+        this.key = key;
+        this.yearsOfExp = yearsOfExp;
+        this.interests = interests;
+        this.certificates = certificates;
+        this.email = email;
+        this.linkedIn = linkedIn;
+    }
+    @Override
+    public String toString() {
+        return "DevModel{" +
+                "name='" + name + '\'' +
+                ", tagsToString='" + tagsToString + '\'' +
+                ", key='" + key + '\'' +
+                ", yearsOfExp='" + yearsOfExp + '\'' +
+                ", interests='" + interests + '\'' +
+                ", certificates='" + certificates + '\'' +
+                ", email='" + email + '\'' +
+                ", linkedIn='" + linkedIn + '\'' +
+                '}';
+    }
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", name);
+        result.put("skills", tags);
+        result.put("experience", yearsofExperience);
+        result.put("key", id);
+        result.put("interests", description);
+        result.put("certs", certificates);
+       // result.put("email", email);
+        //result.put("linkedIn", linkedIn);
+        return result;
+    }
+*/
 
     public void  Setname(String Name)
     {

@@ -16,7 +16,6 @@ import com.example.examples.sep4app.DeveloperProfile.Developer;
 import com.example.examples.sep4app.Friends.Friends;
 import com.example.examples.sep4app.profile.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,13 +33,11 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private List<Developer> list;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-   // ArrayList <Developer>FriendsList=new ArrayList<>();
+    ArrayList <Developer>FriendsList=new ArrayList<>();
 
 // friends fields
 FirebaseAuth mAuth;
-    DatabaseReference projects;
-    DatabaseReference Friends;
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference database;
 
     public interface OnItemClickListener {
          void onItemClick(View view, int position);
@@ -52,9 +49,7 @@ FirebaseAuth mAuth;
         this.list = list;
         this.mContext = context;
         mAuth = FirebaseAuth.getInstance();
-        projects = FirebaseDatabase.getInstance().getReference().child("Projects");
-        Friends = FirebaseDatabase.getInstance().getReference().child("Friends");
-
+        database = FirebaseDatabase.getInstance().getReference().child("Projects");
     }
 
 
@@ -100,34 +95,16 @@ FirebaseAuth mAuth;
 
 
 
-                mDatabase.child("Projects").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists())
-                        {
-                            String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            Friends friend = new Friends(id);
+                            String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            Friends friend=new Friends(id);
                             friend.AddtoList(list.get(position));
-                            Friends.child(id).setValue(friend);
-                            Toast.makeText(mContext,"friendRequest Sent",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                        Log.d("Error","error");
-                    }
-                });
+                            database.child(id).setValue(friend);
 
 
 
 
+
+                Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
             }
         });
 

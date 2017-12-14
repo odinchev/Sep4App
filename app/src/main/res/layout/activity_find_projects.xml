@@ -11,12 +11,31 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         tools:context="com.example.examples.sep4app.FindProjects">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/findpro_filterLabel"
+            android:text="Sort by skills: "
+            android:textSize="20sp"
+            android:textColor="#000"/>
+
+        <com.example.examples.sep4app.MultiSelectionSpinner
+            android:id="@+id/spinner_filter_projects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@id/findpro_filterLabel"
+            />
+
         <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="10dp"
             android:id="@+id/projects_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/findpro_filterLabel">
         </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>

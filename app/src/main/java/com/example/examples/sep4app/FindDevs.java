@@ -30,9 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class FindDevs extends AppCompatActivity {
+public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
 
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
@@ -40,10 +42,13 @@ public class FindDevs extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Developer> devList;
+    private List<Developer> filteredList;
     private DevAdapter adapter;
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
+
+    private List<String> skills;
 
     private int savePos;
 
@@ -64,6 +69,7 @@ public class FindDevs extends AppCompatActivity {
         reference = database.getReference("Developers");
 
         devList = new ArrayList<>();
+
 
         recyclerView = (RecyclerView) findViewById(R.id.devs_list);
         recyclerView.setHasFixedSize(true);
@@ -97,9 +103,66 @@ public class FindDevs extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
+        //spinner
+        skills = new ArrayList<>();
+        final String[] tags = {
+                "C", "C++", "C#", "Java",
+                "JavaScript", "Python", "PHP", "SQL"};
+        MultiSelectionSpinner multiSelectionSpinner = (MultiSelectionSpinner) findViewById(R.id.spinner_filter_devs);
+        multiSelectionSpinner.setItems(tags);
+        multiSelectionSpinner.setSelection(new int[]{2, 6});
+        multiSelectionSpinner.setListener(this);
+
         updateList();
 
     }
+
+    @Override
+    public void selectedIndices(List<Integer> indices) {
+
+    }
+
+    @Override
+    public void selectedStrings(List<String> strings) {
+        //Toast.makeText(this, strings.toString(), Toast.LENGTH_LONG).show();
+        skills = strings;
+        Toast.makeText(this, skills.toString(), Toast.LENGTH_LONG).show();
+        filterBy(skills);
+    }
+
+    private void filterBy(List<String> skills){
+
+        if(skills.equals(new ArrayList<String>())){
+            adapter.setList(devList);
+            recyclerView.setAdapter(adapter);
+            updateList();
+        }
+        else{
+            filteredList = new ArrayList<>();
+
+            for(int k=0; k<skills.size(); k++) {
+                for (int i = 0; i < devList.size(); i++) {
+                    //if dev in devList has same skill as in skills[k] and filteredList does not have it yet then
+                    if (devList.get(i).getSkills().contains(skills.get(k)) && !filteredList.contains(devList.get(i))) {
+                        filteredList.add(devList.get(i));
+                    }
+                }
+            }
+
+            adapter.setList(filteredList);
+            recyclerView.setAdapter(adapter);
+            updateList();
+            }
+        //Collections.sort(devList, this.BY_SKILLS);
+        //updateList();
+
+    }
+    /*public final Comparator<List<String>> BY_SKILLS = new Comparator<List<String>>(){
+        @Override
+        public int compare(List<String> developer, List<String>filter){
+            return developer.equals(filter);
+        }
+    };*/
 
 
 
