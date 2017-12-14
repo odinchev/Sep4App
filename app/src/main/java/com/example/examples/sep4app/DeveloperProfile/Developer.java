@@ -15,7 +15,7 @@ public class Developer
    public String yearsOfExp;
     String interests;
     public String certificates;
-    String email;
+
     String linkedIn;
     public String id;
     public String name;
@@ -26,6 +26,8 @@ public class Developer
    public List<String> skills;
     public String preferredIDE;
     String picture;
+
+    private String email;
 
     public Developer(){
 
@@ -163,5 +165,11 @@ public class Developer
         return picture;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -137,6 +137,16 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
+            <Button
+                android:id="@+id/btn_contactDeveloper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONTACT"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                />
+
         </LinearLayout>
     </ScrollView>
 

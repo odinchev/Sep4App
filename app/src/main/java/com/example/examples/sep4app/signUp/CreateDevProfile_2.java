@@ -288,7 +288,9 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
         //String[] tags = {"stub"};
 
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         Developer developer =new Developer(id,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
+        developer.setEmail(email);
         database.child(id).setValue(developer);
         Intent intent =new Intent(CreateDevProfile_2.this, DevProfile.class);
         startActivity(intent);

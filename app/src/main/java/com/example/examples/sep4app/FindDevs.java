@@ -91,6 +91,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                 b.putString("mDescription", devClicked.description);
                 b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
+                b.putString("mEmail", devClicked.getEmail());
                 //TODO picture
 
                 Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
@@ -214,6 +215,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                     b.putString("mDescription", devClicked.description);
                     b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
                     b.putString("mPreferredIDE", devClicked.preferredIDE);
+                    b.putString("mEmail", devClicked.getEmail());
                     //TODO picture
 
                     Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
@@ -251,6 +253,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                     b.putString("mDescription", devClicked.description);
                     b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
                     b.putString("mPreferredIDE", devClicked.preferredIDE);
+                    b.putString("mEmail", devClicked.getEmail());
                     //TODO picture
 
                     Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
