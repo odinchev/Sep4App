@@ -72,6 +72,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         holder.textCerts.setText(developer.certifications);
         holder.textInterests.setText(developer.description);
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

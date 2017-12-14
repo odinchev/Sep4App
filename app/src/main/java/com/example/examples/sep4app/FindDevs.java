@@ -92,6 +92,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                 b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
                 b.putString("mEmail", devClicked.getEmail());
+                b.putString("mPic",devClicked.getPicture());
                 //TODO picture
 
                 Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);

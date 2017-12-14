@@ -46,7 +46,7 @@ public class ViewDevProfile extends AppCompatActivity {
         Description = (TextView) findViewById(R.id.textViewDescription);
         Skills = (TextView) findViewById(R.id.textViewTags);
         preferredIDE = (TextView) findViewById(R.id.textViewPreferredIDE);
-
+        String picture;
 
 
 
@@ -59,6 +59,11 @@ public class ViewDevProfile extends AppCompatActivity {
             Description.setText(b.getString("mDescription"));
             Skills.setText(b.getStringArrayList("mSkills").toString());
             preferredIDE.setText(b.getString("mPreferredIDE"));
+            picture=(b.getString("mPic"));
+
+            Glide.with(getApplicationContext())
+                    .load(picture)
+                    .into(profilePicture);
 
             final String email = b.getString("mEmail");
 
@@ -74,6 +79,7 @@ public class ViewDevProfile extends AppCompatActivity {
                     inEmail.putExtra(Intent.EXTRA_SUBJECT, "subject");
                     inEmail.putExtra(Intent.EXTRA_TEXT, "Project managers email: " + email);
                     startActivity(Intent.createChooser(inEmail, "Choose an Email client :"));
+
                 }
             });
 
