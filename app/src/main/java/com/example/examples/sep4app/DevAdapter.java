@@ -35,8 +35,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private OnItemClickListener mOnItemClickListener;
     ArrayList <Developer>FriendsList=new ArrayList<>();
 
-// friends fields
-FirebaseAuth mAuth;
+    // friends fields
+    FirebaseAuth mAuth;
     DatabaseReference database;
 
     public interface OnItemClickListener {
@@ -52,6 +52,13 @@ FirebaseAuth mAuth;
         database = FirebaseDatabase.getInstance().getReference().child("Projects");
     }
 
+    public List<Developer> getList() {
+        return list;
+    }
+
+    public void setList(List<Developer> list) {
+        this.list = list;
+    }
 
     @Override
     public DevViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -64,7 +71,7 @@ FirebaseAuth mAuth;
         Developer developer = list.get(position);
 
         holder.textName.setText(developer.name + " " + developer.lastName);
-        holder.textSkills.setText(developer.skills.toString()); //TODO correct this, right now a stub
+        holder.textSkills.setText(developer.skills.toString());
         holder.textYears.setText(developer.yearsofExperience);
         holder.textCerts.setText(developer.certifications);
         holder.textInterests.setText(developer.description);
