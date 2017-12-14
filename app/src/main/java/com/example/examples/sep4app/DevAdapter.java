@@ -49,7 +49,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         this.list = list;
         this.mContext = context;
         mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance().getReference().child("Projects");
+        database = FirebaseDatabase.getInstance().getReference().child("Friends");
     }
 
 
@@ -61,7 +61,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     @Override
     public void onBindViewHolder(final DevViewHolder holder, final int position) {
 
-        Developer developer = list.get(position);
+        final Developer developer = list.get(position);
 
         holder.textName.setText(developer.name + " " + developer.lastName);
         holder.textSkills.setText(developer.skills.toString()); //TODO correct this, right now a stub
@@ -107,7 +107,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
                         if (dataSnapshot.exists()) {
                             String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
                             Friends friend=new Friends(id);
-                            friend.AddtoList(list.get(position));
+                            Developer Developer=list.get(position);
+                            friend.AddtoList(Developer);
                             database.child(id).setValue(friend);
 
                         }
