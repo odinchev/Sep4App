@@ -35,8 +35,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private OnItemClickListener mOnItemClickListener;
     ArrayList <Developer>FriendsList=new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-// friends fields
-FirebaseAuth mAuth;
+    // friends fields
+    FirebaseAuth mAuth;
     DatabaseReference database;
 
     public interface OnItemClickListener {
@@ -158,4 +158,14 @@ FirebaseAuth mAuth;
 
         }
     }
+
+    public List<Developer> getList() {
+        return list;
+    }
+
+    public void setList(List<Developer> list) {
+        this.list = list;
+    }
 }
+
+

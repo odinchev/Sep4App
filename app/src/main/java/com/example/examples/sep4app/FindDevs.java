@@ -49,6 +49,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
     private DatabaseReference reference;
 
     private List<String> skills;
+    private ChildEventListener bob;
 
     private int savePos;
 
@@ -101,6 +102,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
 
             }
         });
+
         recyclerView.setAdapter(adapter);
 
         //spinner
@@ -113,7 +115,71 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
         multiSelectionSpinner.setSelection(new int[]{2, 6});
         multiSelectionSpinner.setListener(this);
 
-        updateList();
+        updateList(devList);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
+    private void updateList(final List<Developer> list){
+
+        bob = reference.addChildEventListener(new ChildEventListener()  {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                list.add(dataSnapshot.getValue(Developer.class));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+                int index = getItemIndex(dataSnapshot.getValue(Developer.class), list);
+                list.set(index, dataSnapshot.getValue(Developer.class));
+                adapter.notifyItemChanged(index);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+
+                int index = getItemIndex(dataSnapshot.getValue(Developer.class), list);
+
+                list.remove(index);
+                adapter.notifyItemRemoved(index);
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //reference.removeEventListener(bob);
+    }
+
+    private int getItemIndex(Developer developer, List<Developer> list){
+
+        int index = savePos;
+
+        for(int i=0; i < list.size(); i++){
+            if(list.get(i).id.equals(developer.id)) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
 
     }
 
@@ -124,7 +190,6 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
 
     @Override
     public void selectedStrings(List<String> strings) {
-        //Toast.makeText(this, strings.toString(), Toast.LENGTH_LONG).show();
         skills = strings;
         Toast.makeText(this, skills.toString(), Toast.LENGTH_LONG).show();
         filterBy(skills);
@@ -132,10 +197,13 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
 
     private void filterBy(List<String> skills){
 
+
         if(skills.equals(new ArrayList<String>())){
-            adapter.setList(devList);
+            filteredList = new ArrayList<>();
+            filteredList = devList;
+            adapter.setList(filteredList);
             recyclerView.setAdapter(adapter);
-            updateList();
+
         }
         else{
             filteredList = new ArrayList<>();
@@ -151,18 +219,11 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
 
             adapter.setList(filteredList);
             recyclerView.setAdapter(adapter);
-            updateList();
+
             }
-        //Collections.sort(devList, this.BY_SKILLS);
-        //updateList();
 
     }
-    /*public final Comparator<List<String>> BY_SKILLS = new Comparator<List<String>>(){
-        @Override
-        public int compare(List<String> developer, List<String>filter){
-            return developer.equals(filter);
-        }
-    };*/
+
 
 
 
@@ -268,60 +329,6 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
 
 
 
-    private void updateList(){
 
-        reference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                devList.add(dataSnapshot.getValue(Developer.class));
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-
-                int index = getItemIndex(dataSnapshot.getValue(Developer.class));
-                devList.set(index, dataSnapshot.getValue(Developer.class));
-                adapter.notifyItemChanged(index);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-
-                int index = getItemIndex(dataSnapshot.getValue(Developer.class));
-
-                devList.remove(index);
-                adapter.notifyItemRemoved(index);
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private int getItemIndex(Developer developer){
-
-        int index = savePos;
-
-        for(int i=0; i < devList.size(); i++){
-            if(devList.get(i).id.equals(developer.id)) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-
-    }
 
 }
