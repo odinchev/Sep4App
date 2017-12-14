@@ -53,36 +53,5 @@ public class ViewDevProfile extends AppCompatActivity {
         super.onStop();
         finish();
     }*/
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                    Developer developer=dataSnapshot.getValue(Developer.class);
-                    name.setText(developer.getName() +" "+ developer.getLastName());
-                    Description.setText(developer.getDescription());
-                    certifications .setText(developer.getCertifications());
-                    yearsofExperience .setText(developer.getYearsofExperience());
-                    Skills .setText(developer.getSkills().toString());
-                    preferredIDE .setText(developer.getide());
-                    // here is where we use glide to take the picture url and put it into the ImageView
-                    Glide.with(getApplicationContext())
-                            .load(developer.getPicture())
-                            .into(profilePicture);
 
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-                Log.d("Error","error");
-            }
-        });
-    }
 }
