@@ -44,14 +44,22 @@ public class ViewDevProfile extends AppCompatActivity {
         Skills = (TextView) findViewById(R.id.textViewTags);
         preferredIDE = (TextView) findViewById(R.id.textViewPreferredIDE);
 
+        Intent in = getIntent();
+        Bundle b = in.getExtras();
+        if( b != null){
+            name.setText(b.getString("mName"));
+            certifications.setText(b.getString("mCertifications"));
+            yearsofExperience.setText(b.getString("mYearsOfExperience"));
+            Description.setText(b.getString("mDescription"));
+            Skills.setText(b.getStringArrayList("mSkills").toString());
+            preferredIDE.setText(b.getString("mPreferredIDE"));
+
+            //TODO set Profile pic
+        }
+
 
 
     }
 
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }*/
 
 }

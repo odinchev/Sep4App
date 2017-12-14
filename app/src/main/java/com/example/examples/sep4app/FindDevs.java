@@ -201,7 +201,30 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
         if(skills.equals(new ArrayList<String>())){
             filteredList = new ArrayList<>();
             filteredList = devList;
-            adapter.setList(filteredList);
+            //adapter.setList(filteredList);
+            adapter = new DevAdapter(devList, this, new DevAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Developer devClicked = devList.get(position);
+
+                    Bundle b = new Bundle();
+                    b.putString("mName", devClicked.name + " " + devClicked.lastName);
+                    b.putString("mCertifications", devClicked.certifications);
+                    b.putString("mYearsOfExperience", devClicked.yearsofExperience);
+                    b.putString("mDescription", devClicked.description);
+                    b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
+                    b.putString("mPreferredIDE", devClicked.preferredIDE);
+                    //TODO picture
+
+                    Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
+
+                    intent.putExtras(b);
+
+                    startActivity(intent);
+
+
+                }
+            });
             recyclerView.setAdapter(adapter);
 
         }
@@ -216,8 +239,30 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                     }
                 }
             }
+            adapter = new DevAdapter(filteredList, this, new DevAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Developer devClicked = filteredList.get(position);
 
-            adapter.setList(filteredList);
+                    Bundle b = new Bundle();
+                    b.putString("mName", devClicked.name + " " + devClicked.lastName);
+                    b.putString("mCertifications", devClicked.certifications);
+                    b.putString("mYearsOfExperience", devClicked.yearsofExperience);
+                    b.putString("mDescription", devClicked.description);
+                    b.putStringArrayList("mSkills", (ArrayList)devClicked.skills);
+                    b.putString("mPreferredIDE", devClicked.preferredIDE);
+                    //TODO picture
+
+                    Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
+
+                    intent.putExtras(b);
+
+                    startActivity(intent);
+
+
+                }
+            });
+            //adapter.setList(filteredList);
             recyclerView.setAdapter(adapter);
 
             }
