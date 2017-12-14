@@ -87,7 +87,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
 
                 Bundle b = new Bundle();
                 b.putString("mName", proClicked.getName());
-                b.putStringArrayList("mReqSkills", (ArrayList)proClicked.getReqSkills());
+                b.putStringArrayList("mReqSkills", (ArrayList<String>)proClicked.getReqSkills());
                 b.putString("mReqExp", proClicked.getReqExp());
                 b.putString("mOtherReqs", proClicked.getOtherReqs());
                 b.putString("mDuration", proClicked.getDuration());
@@ -120,7 +120,13 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //reference.removeEventListener(john);
+        recyclerView.setAdapter(adapter);
+        //updateList(filteredList);
+    }
 
     private void initInstances() {
 
@@ -275,7 +281,28 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
         if(skills.equals(new ArrayList<String>())){
             filteredList = new ArrayList<>();
             filteredList = projectList;
-            adapter.setList(filteredList);
+            adapter = new ProjectAdapter(filteredList, this, new ProjectAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Project proClicked = filteredList.get(position);
+
+                    Bundle b = new Bundle();
+                    b.putString("mName", proClicked.getName());
+                    b.putStringArrayList("mReqSkills", (ArrayList<String>)proClicked.getReqSkills());
+                    b.putString("mReqExp", proClicked.getReqExp());
+                    b.putString("mOtherReqs", proClicked.getOtherReqs());
+                    b.putString("mDuration", proClicked.getDuration());
+                    b.putString("mSummary", proClicked.getSummary());
+                    //TODO picture
+
+                    Intent intent = new Intent(FindProjects.this, ProjectActivity.class);
+
+                    intent.putExtras(b);
+
+                    startActivity(intent);
+                }
+            });
+            //adapter.setList(filteredList);
             recyclerView.setAdapter(adapter);
 
         }
@@ -290,8 +317,28 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                     }
                 }
             }
+            adapter = new ProjectAdapter(filteredList, this, new ProjectAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Project proClicked = filteredList.get(position);
 
-            adapter.setList(filteredList);
+                    Bundle b = new Bundle();
+                    b.putString("mName", proClicked.getName());
+                    b.putStringArrayList("mReqSkills", (ArrayList<String>)proClicked.getReqSkills());
+                    b.putString("mReqExp", proClicked.getReqExp());
+                    b.putString("mOtherReqs", proClicked.getOtherReqs());
+                    b.putString("mDuration", proClicked.getDuration());
+                    b.putString("mSummary", proClicked.getSummary());
+                    //TODO picture
+
+                    Intent intent = new Intent(FindProjects.this, ProjectActivity.class);
+
+                    intent.putExtras(b);
+
+                    startActivity(intent);
+                }
+            });
+            //adapter.setList(filteredList);
             recyclerView.setAdapter(adapter);
 
         }

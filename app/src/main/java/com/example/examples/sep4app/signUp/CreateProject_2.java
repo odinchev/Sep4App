@@ -77,9 +77,10 @@ public class CreateProject_2 extends AppCompatActivity implements MultiSelection
 
         sExp = exp.getText().toString().trim();
         sOther = other.getText().toString().trim();
+        String id = database.push().getKey();
 
-        String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Project project =new Project(id, sName, skills, sExp, sOther, sDuration,sSummary);
+        String creatorId= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Project project =new Project(id,creatorId, sName, skills, sExp, sOther, sDuration,sSummary);
         database.child(id).setValue(project);
         Intent intent =new Intent(CreateProject_2.this, ProjectActivity.class);
         startActivity(intent);
