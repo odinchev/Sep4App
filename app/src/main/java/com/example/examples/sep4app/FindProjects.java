@@ -92,6 +92,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                 b.putString("mOtherReqs", proClicked.getOtherReqs());
                 b.putString("mDuration", proClicked.getDuration());
                 b.putString("mSummary", proClicked.getSummary());
+                b.putString("mEmail", proClicked.getCreatorEmail());
                 //TODO picture
 
                 Intent intent = new Intent(FindProjects.this, ProjectActivity.class);
@@ -293,6 +294,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                     b.putString("mOtherReqs", proClicked.getOtherReqs());
                     b.putString("mDuration", proClicked.getDuration());
                     b.putString("mSummary", proClicked.getSummary());
+                    b.putString("mEmail", proClicked.getCreatorEmail());
                     //TODO picture
 
                     Intent intent = new Intent(FindProjects.this, ProjectActivity.class);
@@ -329,6 +331,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                     b.putString("mOtherReqs", proClicked.getOtherReqs());
                     b.putString("mDuration", proClicked.getDuration());
                     b.putString("mSummary", proClicked.getSummary());
+                    b.putString("mEmail", proClicked.getCreatorEmail());
                     //TODO picture
 
                     Intent intent = new Intent(FindProjects.this, ProjectActivity.class);

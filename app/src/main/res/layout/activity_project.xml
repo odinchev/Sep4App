@@ -120,7 +120,7 @@
         android:text="This project is about creating a database of crazy vodka drinkers"
         android:textSize="20dp"
         android:textColor="#000"
-        android:layout_below="@id/text_project_duration_label"
+        android:layout_below="@id/text_project_duration"
         android:layout_toEndOf="@id/text_project_summary_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

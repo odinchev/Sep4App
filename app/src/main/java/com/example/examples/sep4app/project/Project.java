@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Project {
 
-    private String id, creatorID, name, reqExp, otherReqs, duration, summary;
+    private String id, creatorID, name, reqExp, otherReqs, duration, summary, creatorEmail;
     private List<String> reqSkills;
     //private Image projectImage
 
@@ -18,7 +18,7 @@ public class Project {
 
     }
 
-    public Project(String id, String creatorID, String name, List<String> reqSkills, String reqExp, String otherReqs, String duration, String summary) {
+    public Project(String id, String creatorID, String creatorEmail, String name, List<String> reqSkills, String reqExp, String otherReqs, String duration, String summary) {
         this.id = id;
         this.creatorID = creatorID;
         this.name = name;
@@ -27,6 +27,7 @@ public class Project {
         this.otherReqs = otherReqs;
         this.duration = duration;
         this.summary = summary;
+        this.creatorEmail = creatorEmail;
     }
 
     public String getId() {
@@ -88,5 +89,13 @@ public class Project {
 
     public void setCreatorID(String creatorID) {
         this.creatorID = creatorID;
+    }
+
+    public String getCreatorEmail() {
+        return creatorEmail;
+    }
+
+    public void setCreatorEmail(String creatorEmail) {
+        this.creatorEmail = creatorEmail;
     }
 }

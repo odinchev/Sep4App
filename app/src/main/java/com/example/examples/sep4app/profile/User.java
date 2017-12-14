@@ -21,9 +21,10 @@ public class User
     String description;
     String preferredIDE;
     String picture;
+    String email;
 
 
-    public User(String id,String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
+    public User(String id, String Setname,String SetlastName,String Setcertifications,String SetYearsofExperience,String Setdescription,String SetPreferredIDE)
     {
         this.id=id;
         this.name=Setname;
@@ -33,14 +34,16 @@ public class User
         this.description=Setdescription;
         this.preferredIDE=SetPreferredIDE;
 
+
     }
-    public User(String id,String Setname,String SetlastName,String Setdescription,String Setpicture)
+    public User(String id,String email, String Setname,String SetlastName,String Setdescription,String Setpicture)
     {
         this.id=id;
         this.name=Setname;
         this.lastName=SetlastName;
         this.description=Setdescription;
         this.picture=Setpicture;
+        this.email = email;
 
     }
     public void  Setname(String Name)
@@ -101,6 +104,12 @@ public class User
         return preferredIDE;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
 

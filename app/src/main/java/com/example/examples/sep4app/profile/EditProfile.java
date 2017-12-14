@@ -262,7 +262,8 @@ public class EditProfile extends AppCompatActivity
         if (user != null && profileImageURL != null)
         {
             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            User Edituser = new User(id, name, lastName, description, profileImageURL);
+            String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            User Edituser = new User(id, email, name, lastName, description, profileImageURL);
             database.child(id).setValue(Edituser);
 
 
