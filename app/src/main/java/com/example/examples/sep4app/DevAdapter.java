@@ -39,6 +39,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     FirebaseAuth mAuth;
     DatabaseReference database;
     String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     Friends friend=new Friends(id);
 
     public interface OnItemClickListener {
@@ -107,7 +108,6 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
                     public void onDataChange(DataSnapshot dataSnapshot)
                     {
                         if (dataSnapshot.exists()) {
-
 
                             Developer Developer=list.get(position);
                             friend.AddtoList(Developer);
