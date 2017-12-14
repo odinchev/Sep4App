@@ -244,6 +244,7 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
 
 
     //TODO is this used anywhere???
+    //TODO yes its used when we register the user id does not have an onclick but its in the sign up button in create dev profile 2 xml
     public void registerUser(View v)
     {
 
