@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindProjects extends AppCompatActivity {
+public class FindProjects extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
 
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
@@ -43,10 +43,14 @@ public class FindProjects extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Project> projectList;
+    private List<Project> filteredList;
     private ProjectAdapter adapter;
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
+
+    private List<String> skills;
+    private ChildEventListener john;
 
     private int savePos;
 
@@ -101,7 +105,17 @@ public class FindProjects extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        updateList();
+        //spinner
+        skills = new ArrayList<>();
+        final String[] tags = {
+                "C", "C++", "C#", "Java",
+                "JavaScript", "Python", "PHP", "SQL"};
+        MultiSelectionSpinner multiSelectionSpinner = (MultiSelectionSpinner) findViewById(R.id.spinner_filter_projects);
+        multiSelectionSpinner.setItems(tags);
+        multiSelectionSpinner.setSelection(new int[]{2, 6});
+        multiSelectionSpinner.setListener(this);
+
+        updateList(projectList);
 
     }
 
@@ -187,12 +201,12 @@ public class FindProjects extends AppCompatActivity {
 
 
 
-    private void updateList(){
+    private void updateList(final List<Project> list){
 
-        reference.addChildEventListener(new ChildEventListener() {
+        john = reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                projectList.add(dataSnapshot.getValue(Project.class));
+                list.add(dataSnapshot.getValue(Project.class));
                 adapter.notifyDataSetChanged();
             }
 
@@ -200,8 +214,8 @@ public class FindProjects extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(Project.class));
-                projectList.set(index, dataSnapshot.getValue(Project.class));
+                int index = getItemIndex(dataSnapshot.getValue(Project.class), list);
+                list.set(index, dataSnapshot.getValue(Project.class));
                 adapter.notifyItemChanged(index);
             }
 
@@ -209,9 +223,9 @@ public class FindProjects extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
 
-                int index = getItemIndex(dataSnapshot.getValue(Project.class));
+                int index = getItemIndex(dataSnapshot.getValue(Project.class), list);
 
-                projectList.remove(index);
+                list.remove(index);
                 adapter.notifyItemRemoved(index);
 
             }
@@ -228,18 +242,59 @@ public class FindProjects extends AppCompatActivity {
         });
     }
 
-    private int getItemIndex(Project project){
+    private int getItemIndex(Project project, List<Project> list){
 
         int index = savePos;
 
-        for(int i=0; i < projectList.size(); i++){
-            if(projectList.get(i).getId().equals(project.getId())) {
+        for(int i=0; i < list.size(); i++){
+            if(list.get(i).getId().equals(project.getId())) {
                 index = i;
                 break;
             }
         }
 
         return index;
+
+    }
+
+    @Override
+    public void selectedIndices(List<Integer> indices) {
+
+    }
+
+    @Override
+    public void selectedStrings(List<String> strings) {
+        skills = strings;
+        Toast.makeText(this, skills.toString(), Toast.LENGTH_LONG).show();
+        filterBy(skills);
+    }
+    //filtering done here
+    private void filterBy(List<String> skills){
+
+
+        if(skills.equals(new ArrayList<String>())){
+            filteredList = new ArrayList<>();
+            filteredList = projectList;
+            adapter.setList(filteredList);
+            recyclerView.setAdapter(adapter);
+
+        }
+        else{
+            filteredList = new ArrayList<>();
+
+            for(int k=0; k<skills.size(); k++) {
+                for (int i = 0; i < projectList.size(); i++) {
+                    //if dev in devList has same skill as in skills[k] and filteredList does not have it yet then
+                    if (projectList.get(i).getReqSkills().contains(skills.get(k)) && !filteredList.contains(projectList.get(i))) {
+                        filteredList.add(projectList.get(i));
+                    }
+                }
+            }
+
+            adapter.setList(filteredList);
+            recyclerView.setAdapter(adapter);
+
+        }
 
     }
 

@@ -95,4 +95,12 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHold
 
         }
     }
+
+    public List<Project> getList() {
+        return list;
+    }
+
+    public void setList(List<Project> list) {
+        this.list = list;
+    }
 }

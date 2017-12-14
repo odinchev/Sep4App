@@ -194,7 +194,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
         Toast.makeText(this, skills.toString(), Toast.LENGTH_LONG).show();
         filterBy(skills);
     }
-
+    //filtering done here
     private void filterBy(List<String> skills){
 
 
