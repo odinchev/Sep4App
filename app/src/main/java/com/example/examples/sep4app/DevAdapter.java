@@ -34,7 +34,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
     ArrayList <Developer>FriendsList=new ArrayList<>();
-
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 // friends fields
 FirebaseAuth mAuth;
     DatabaseReference database;
@@ -95,16 +95,38 @@ FirebaseAuth mAuth;
 
 
 
+
+
+
+                mDatabase.child("Projects").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
+                {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        if (dataSnapshot.exists()) {
                             String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
                             Friends friend=new Friends(id);
                             friend.AddtoList(list.get(position));
                             database.child(id).setValue(friend);
 
+                        }
+                        else
+                        {
+                            Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+
+                        Log.d("Error", "error");
+                    }
+                });
 
 
 
-
-                Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
             }
         });
 
