@@ -313,7 +313,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         String certifications = Certifications.getText().toString().trim();
         String YearsofExperience = yearsofExperience.getText().toString().trim();
         String description = Description.getText().toString().trim();
-        //List<String> skills = {Skills.getText().toString()};
+        List<String> skillz = new ArrayList<>(skills);
         String PreferredIDE = preferredIDE.getText().toString().trim();
 
 
@@ -321,7 +321,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String email = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skills, PreferredIDE, profileImageURL);
+        Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skillz, PreferredIDE, profileImageURL);
         database.child(id).setValue(editDeveloper);
 
 
