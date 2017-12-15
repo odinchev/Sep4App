@@ -144,17 +144,22 @@ initInstances();
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
-                        // startActivity(p);
+                        Intent p = new Intent(MainActivity.this,FindProjects.class);
+                         startActivity(p);
                         Context context = getApplicationContext();
-                        CharSequence text = "EMPTINESS!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(context, text, duration).show();
 
 
 
                         break;
 
+
+                    case R.id.nav_CreateProject:
+
+                        Intent q = new Intent(MainActivity.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
 
                 }

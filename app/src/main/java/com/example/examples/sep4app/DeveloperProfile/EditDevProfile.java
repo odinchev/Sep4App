@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.examples.sep4app.FindProjects;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.MultiSelectionSpinner;
 import com.example.examples.sep4app.R;
@@ -29,6 +30,7 @@ import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.User;
 import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
+import com.example.examples.sep4app.signUp.CreateProject_1;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,7 +92,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //for the drawer side menu ^
-        //initInstances();
+        initInstances();
 
 
 
@@ -191,7 +193,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
 
 
-    /*private void initInstances() {
+    private void initInstances() {
 
 
 
@@ -239,8 +241,8 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
-                        // startActivity(p);
+                         Intent p = new Intent(EditDevProfile.this,FindProjects.class);
+                         startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
                         int duration = Toast.LENGTH_SHORT;
@@ -249,7 +251,13 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
 
                         break;
+                    case R.id.nav_CreateProject:
 
+                        Intent q = new Intent(EditDevProfile.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
 
                 }
@@ -266,7 +274,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         }
         return super.onOptionsItemSelected(item);
     }
-    */
+
 
 
 

@@ -63,4 +63,15 @@ android:icon="@drawable/ic_contacts_black_24dp"
 
         />
 
+
+    <item
+        android:icon="@drawable/ic_plus"
+        android:id="@+id/nav_CreateProject"
+        android:title="Create Project"
+
+        />
+
+
+
+
 </menu>

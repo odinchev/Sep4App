@@ -174,6 +174,13 @@ public class CreateDevProfile_1 extends AppCompatActivity
 
                         break;
 
+case R.id.nav_CreateProject:
+
+                        Intent q = new Intent(CreateDevProfile.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
 
                 }

@@ -21,10 +21,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.DeveloperProfile.DevProfile;
 import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
+import com.example.examples.sep4app.FindProjects;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
+import com.example.examples.sep4app.signUp.CreateProject_1;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -174,17 +176,21 @@ public class EditProfile extends AppCompatActivity
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
-                        // startActivity(p);
+                         Intent p = new Intent(EditProfile.this,FindProjects.class);
+                         startActivity(p);
                         Context context = getApplicationContext();
-                        CharSequence text = "EMPTINESS!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(context, text, duration).show();
+
 
 
 
                         break;
+                    case R.id.nav_CreateProject:
 
+                        Intent q = new Intent(EditProfile.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
 
                 }

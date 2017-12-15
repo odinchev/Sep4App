@@ -21,6 +21,7 @@ import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
+import com.example.examples.sep4app.signUp.CreateProject_1;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -327,18 +328,20 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                         break;
 
                     case R.id.nav_Find_Projects:
-                        // Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
-                        // startActivity(p);
-                        Context context = getApplicationContext();
-                        CharSequence text = "EMPTINESS!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(context, text, duration).show();
+                         Intent p = new Intent(FindDevs.this,FindProjects.class);
+                         startActivity(p);
 
 
 
                         break;
 
+                    case R.id.nav_CreateProject:
 
+                        Intent q = new Intent(FindDevs.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
                 }
                 return false;

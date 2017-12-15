@@ -24,6 +24,7 @@ import com.example.examples.sep4app.project.Project;
 import com.example.examples.sep4app.project.ProjectActivity;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.example.examples.sep4app.signUp.CreateDevProfile_2;
+import com.example.examples.sep4app.signUp.CreateProject_1;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -177,8 +178,8 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                         break;
 
                     case R.id.nav_Find_Projects:
-                         //Intent p = new Intent(CreateDevProfile_2.this,FindProjects.class);
-                        // startActivity(p);
+                         Intent p = new Intent( FindProjects.this,FindProjects.class);
+                         startActivity(p);
                         Context context = getApplicationContext();
                         CharSequence text = "EMPTINESS!";
                         int duration = Toast.LENGTH_SHORT;
@@ -188,6 +189,13 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
 
                         break;
 
+                    case R.id.nav_CreateProject:
+
+                        Intent q = new Intent(FindProjects.this,CreateProject_1.class);
+                        startActivity(q);
+
+
+                        break;
 
 
                 }
