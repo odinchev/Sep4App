@@ -34,10 +34,11 @@ public class Developer
     }
 
 
-    public Developer(String id, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture)
+    public Developer(String id, String email, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture)
     {
         // fetch name from database
         this.id=id;
+        this.email=email;
         this.name=Setname;
         this.lastName=SetlastName;
         this.certifications=Setcertifications;

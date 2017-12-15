@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.examples.sep4app.R;
 
+import java.util.ArrayList;
+
 public class ProjectActivity extends AppCompatActivity {
 
     private ImageView projectImage;

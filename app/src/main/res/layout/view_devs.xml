@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -52,7 +53,7 @@
         android:id="@+id/text_experience_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_proficient_in_label"
+        android:layout_below="@id/text_skills"
         android:text="Years of Experience: "
         android:textColor="#000" />
 
@@ -60,7 +61,7 @@
         android:id="@+id/text_yearsOfExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_proficient_in_label"
+        android:layout_below="@id/text_skills"
         android:layout_toEndOf="@id/text_experience_label"
         android:text="4 years"
         android:textColor="#000" />
@@ -69,7 +70,7 @@
         android:id="@+id/text_certs_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_experience_label"
+        android:layout_below="@id/text_yearsOfExp"
         android:text="Certifications: "
         android:textColor="#000" />
 
@@ -77,7 +78,7 @@
         android:id="@+id/text_certificates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_experience_label"
+        android:layout_below="@id/text_yearsOfExp"
         android:layout_toEndOf="@id/text_certs_label"
         android:text="CompTIA A+, Network+, Security+, Linux+"
         android:textColor="#000" />
@@ -86,7 +87,7 @@
         android:id="@+id/text_interest_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_certs_label"
+        android:layout_below="@id/text_certificates"
         android:text="Interested in: "
         android:textColor="#000" />
 
@@ -94,7 +95,7 @@
         android:id="@+id/text_interestedIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_certs_label"
+        android:layout_below="@id/text_certificates"
         android:layout_toEndOf="@id/text_interest_label"
         android:text="Network security"
         android:textColor="#000" />

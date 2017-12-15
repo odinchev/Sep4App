@@ -146,7 +146,7 @@ initInstances();
                     case R.id.nav_Find_Projects:
                         Intent p = new Intent(MainActivity.this,FindProjects.class);
                          startActivity(p);
-                        Context context = getApplicationContext();
+                        //Context context = getApplicationContext();
 
 
 

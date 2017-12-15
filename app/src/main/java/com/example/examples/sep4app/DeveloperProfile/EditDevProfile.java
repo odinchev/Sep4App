@@ -318,7 +318,8 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         FirebaseUser user = mAuth.getCurrentUser();
 
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Developer editDeveloper = new Developer(id, name, lastName, certifications, YearsofExperience, description, skills, PreferredIDE, profileImageURL);
+        String email = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skills, PreferredIDE, profileImageURL);
         database.child(id).setValue(editDeveloper);
 
 

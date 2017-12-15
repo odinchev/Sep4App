@@ -40,7 +40,7 @@ public class DevProfile extends AppCompatActivity {
     yearsofExperience=(TextView)findViewById(R.id.textViewYearsofExperience);
     Description=(TextView)findViewById(R.id.textViewDescription);
     Skills=(TextView)findViewById(R.id.textViewTags);
-   preferredIDE=(TextView)findViewById(R.id.textViewPreferredIDE);
+    preferredIDE=(TextView)findViewById(R.id.textViewPreferredIDE);
     database= FirebaseDatabase.getInstance().getReference();
 
        // ActionBar ab=getSupportActionBar();
