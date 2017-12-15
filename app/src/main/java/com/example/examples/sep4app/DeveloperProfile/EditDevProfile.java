@@ -162,7 +162,9 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
                     User user = dataSnapshot.getValue(User.class);
 
                     Description.setText(developer.getDescription());
-
+                    Certifications.setText(developer.getCertifications());
+                    yearsofExperience.setText(developer.getYearsofExperience());
+                    preferredIDE.setText(developer.getide());
                 }
             }
 
