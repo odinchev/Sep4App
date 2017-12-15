@@ -2,6 +2,7 @@ package com.example.examples.sep4app.project;
 
 import android.media.Image;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,14 +12,14 @@ import java.util.List;
 public class Project {
 
     private String id, creatorID, name, reqExp, otherReqs, duration, summary, creatorEmail;
-    private List<String> reqSkills;
+    private ArrayList<String> reqSkills;
     //private Image projectImage
 
     public Project(){
 
     }
 
-    public Project(String id, String creatorID, String creatorEmail, String name, List<String> reqSkills, String reqExp, String otherReqs, String duration, String summary) {
+    public Project(String id, String creatorID, String creatorEmail, String name, ArrayList<String> reqSkills, String reqExp, String otherReqs, String duration, String summary) {
         this.id = id;
         this.creatorID = creatorID;
         this.name = name;
@@ -43,11 +44,11 @@ public class Project {
         this.name = name;
     }
 
-    public List<String> getReqSkills() {
-        return reqSkills;
+    public ArrayList<String> getReqSkills() {
+        return (ArrayList<String>) reqSkills;
     }
 
-    public void setReqSkills(List<String> reqSkills) {
+    public void setReqSkills(ArrayList<String> reqSkills) {
         this.reqSkills = reqSkills;
     }
 
