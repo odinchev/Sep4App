@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.signUp.Signup_1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -72,7 +73,7 @@ public class Login extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    Intent intent=new Intent(Login.this,MainActivity.class);
+                    Intent intent=new Intent(Login.this,Profile.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
