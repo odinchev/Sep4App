@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CreateDevProfile_1 extends AppCompatActivity
 {
-
+// this is the first part of the create developer profile
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private   NavigationView navigation;
@@ -72,11 +72,13 @@ public class CreateDevProfile_1 extends AppCompatActivity
        // database= FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        // here we get the current user's name lastname and picture
         mDatabase.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
+                // if the user exist we take the values.
                 if(dataSnapshot.exists())
                 {
                     User user=dataSnapshot.getValue(User.class);
@@ -192,7 +194,8 @@ case R.id.nav_CreateProject:
 
 
 
-
+    // this method is called from a button in the signup activity  we get the data from all the fields and put them into extras in the intent
+    // the we send them to the next screen
     public void NextScreen(View v)
     {
         String certifications=editTextCertifications.getText().toString().trim();

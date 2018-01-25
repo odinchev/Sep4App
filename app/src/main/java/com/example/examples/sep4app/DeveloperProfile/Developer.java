@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Developer
 {
-
+    // developer class which holds all of the methods that we would use for making the objects we save to the firebase database
    // String name, tagsToString, key;
    public String yearsOfExp;
     String interests;

@@ -101,7 +101,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
 
 
 
-
+                // this is the method where we click to join a project it finds the project that is assosiated with the current user and adds the user to the project
                 mDatabase.child("Projects").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
                 {
 

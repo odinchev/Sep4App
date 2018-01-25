@@ -21,7 +21,7 @@ import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.Profile;
 
 public class CreateProject_1 extends AppCompatActivity {
-
+// here we create the projcets whih will belong to the user
     private EditText pName, pSummary, pDuration;
 
     private NavigationView navigation;

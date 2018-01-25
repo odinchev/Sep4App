@@ -45,7 +45,7 @@ import java.io.IOException;
 /**
  * Created by PC on 1.12.2017 г..
  */
-
+// here we edit the profile
 public class EditProfile extends AppCompatActivity
 
 {
@@ -83,7 +83,7 @@ public class EditProfile extends AppCompatActivity
 
 
 
-
+        // here we load the data for our user
         mAuth = FirebaseAuth.getInstance();
 
         profilePicture = (ImageView) findViewById(R.id.imageView);

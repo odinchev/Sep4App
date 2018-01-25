@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup_1 extends AppCompatActivity
 {
+    // Here we take some of the user's info and its jus for his profile.
     // acctual name and registration page
     EditText passWord;
     EditText editTextEmail;//1
@@ -35,7 +36,9 @@ public class Signup_1 extends AppCompatActivity
     EditText editTextLastName;//1
     EditText profileDescription;//2
     ProgressBar progress;
+    // firebase authentication.
     private FirebaseAuth mAuth;
+    // reference to the database.
     DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,9 +53,11 @@ public class Signup_1 extends AppCompatActivity
         profileDescription=(EditText)findViewById(R.id.profileDescription);
         Button next=(Button)findViewById(R.id.next);
         progress=(ProgressBar)findViewById(R.id.progressBar);
+        // here we get the reference for the Users subtree in the database
         database= FirebaseDatabase.getInstance().getReference("Users");
         mAuth = FirebaseAuth.getInstance();
     }
+    // Here we register the user
     public void Register(View v)
     {
 
@@ -99,6 +104,7 @@ public class Signup_1 extends AppCompatActivity
             return;
         }
         progress.setVisibility(View.VISIBLE);
+        // here we create the user
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
             @Override
@@ -107,18 +113,22 @@ public class Signup_1 extends AppCompatActivity
                 progress.setVisibility(View.GONE);
                 if(task.isSuccessful())
                 {
+                    // if the task was successful then we get the current user and we make a new user object which we add to the database
+                    // the picture is null
 
                     // make the user in the database
                     String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
                     User user=new User(id,email,name,LastName,description,null);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
+                    // then we load the profile class
                     Intent intent =new Intent(Signup_1.this,Profile.class);
                     startActivity(intent);
 
                 }
                 else
                 {
+                    // if we got an error we check if we had an existing user if not we return the error we had
                     if(task.getException() instanceof FirebaseAuthUserCollisionException)
                     {
                         Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();

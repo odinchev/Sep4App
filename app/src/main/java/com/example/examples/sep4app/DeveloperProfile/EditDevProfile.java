@@ -55,7 +55,7 @@ import java.util.List;
 public class EditDevProfile extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener
 
 {
-
+    // this is the class in which we edit the developers
     private static final int CHOOSE_IMAGE = 101;
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
@@ -112,6 +112,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         //Skills = (EditText) findViewById(R.id.editTextSkills);
         preferredIDE = (EditText) findViewById(R.id.editTextPreferredIDEEdit);
         Save = (Button) findViewById(R.id.SaveProfileEdit);
+        // we have two references  for the developer and the user
         database = FirebaseDatabase.getInstance().getReference("Developers");
         Users = FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -125,7 +126,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         multiSelectionSpinner.setSelection(new int[]{2, 6});
         multiSelectionSpinner.setListener(this);
         // Fetch data from database
-
+        // we use the data from the user to get the picture firstname and lastname
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -153,6 +154,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
         {
+            // and we user the developer reference to get the developer specific stuff
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -294,7 +296,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
 
 
-
+// here we coose an image
     public void ChangePicture(View v)
     {
         ShowImageChooser();
@@ -318,7 +320,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
 
         FirebaseUser user = mAuth.getCurrentUser();
-
+        // here we save data to the developer object
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String email = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skillz, PreferredIDE, profileImageURL);
@@ -327,6 +329,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
     }
 
+    // this is for the image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -347,6 +350,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         }
     }
 
+    // thi is for the image
     public void UploadImageToFirebaseStorage()
     {
         StorageReference profileImageReference = FirebaseStorage.getInstance().getReference("profilePics/" + System.currentTimeMillis() + ".jpg");

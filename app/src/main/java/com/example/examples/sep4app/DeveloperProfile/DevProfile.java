@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 // for viewing the Profile both for the user and the other users
 public class DevProfile extends AppCompatActivity {
 
+    // this is the class that we use to see the developer profile
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
     TextView name;
@@ -53,12 +54,14 @@ public class DevProfile extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
+        // we get the clild node developers  and get the current user
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists())
                 {
+                    //this is the developer object and the data in it is from the database
                     /*Developer*/ developer=dataSnapshot.getValue(Developer.class);
 
                         name.setText(developer.getName() +" "+ developer.getLastName());
@@ -68,6 +71,7 @@ public class DevProfile extends AppCompatActivity {
                        Description.setText(developer.getDescription());
                        preferredIDE.setText(developer.getide());
 
+                       // here we use an api to get the picture from the developer
                     Glide.with(getApplicationContext())
                             .load(developer.getPicture())
                             .into(profilePicture);

@@ -37,7 +37,7 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 // this is the screen for developers  not a sign up but editing stuff that means no register user with mauth but push dev to database with getkey we need a map
-
+// it is a sign up as it is the seccond screen for the dev signup
     EditText editTextSkills;//3
 
     public String name;
@@ -94,7 +94,7 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
         mAuth = FirebaseAuth.getInstance();
         //initInstances();
 
-
+        // skills array list in which the developer will select what he is good at
         skills = new ArrayList<>();
         final String[] tags = {
                 "C", "C++", "C#", "Java",
@@ -291,7 +291,9 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         Developer developer =new Developer(id,email,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
+
         developer.setEmail(email);
+        // we save the developer to the database and we go to the devprofile
         database.child(id).setValue(developer);
         Intent intent =new Intent(CreateDevProfile_2.this, DevProfile.class);
         startActivity(intent);

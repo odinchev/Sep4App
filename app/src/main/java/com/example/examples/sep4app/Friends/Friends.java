@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by PC on 12.12.2017 г..
  */
-
+// this is for the interested in system in the projects
 public class Friends
 {
     public String projectID;
