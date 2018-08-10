@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,25 +32,27 @@ import java.util.List;
  * Created by MrWhitemount on 01-Dec-17.
  */
 
-class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
+class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder> {
     private List<Developer> list;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-    ArrayList <Developer>FriendsList=new ArrayList<>();
+    ArrayList<Developer> FriendsList = new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     // friends fields
     FirebaseAuth mAuth;
     DatabaseReference database;
-    String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    int checkPos;
 
-    Friends friend=new Friends(id);
+
+    Friends friend = new Friends(id);
 
     public interface OnItemClickListener {
-         void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
     }
 
 
-    public DevAdapter(List<Developer> list, Context context, OnItemClickListener onItemClickListener){
+    public DevAdapter(List<Developer> list, Context context, OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
         this.list = list;
         this.mContext = context;
@@ -61,16 +66,27 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         return new DevViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_devs, parent, false));
     }
 
+
+
+
     @Override
     public void onBindViewHolder(final DevViewHolder holder, final int position) {
 
+
+
+
         final Developer developer = list.get(position);
+
 
         holder.textName.setText(developer.name + " " + developer.lastName);
         holder.textSkills.setText(developer.skills.toString()); //TODO correct this, right now a stub
         holder.textYears.setText(developer.yearsofExperience);
         holder.textCerts.setText(developer.certifications);
         holder.textInterests.setText(developer.description);
+
+        Glide.with(mContext)
+                .load(developer.getPicture())
+                .into(holder.picture);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,10 +99,8 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         });
 
 
-
-
-
         holder.btnShowInterest.setOnClickListener(new Button.OnClickListener() {
+
 
             @Override
             public void onClick(View v) {
@@ -97,38 +111,29 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
                 // put object in database
 
 
-
-
-
-
                 // this is the method where we click to join a project it finds the project that is assosiated with the current user and adds the user to the project
-                mDatabase.child("Projects").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener()
-                {
+                mDatabase.child("Projects").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
 
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot)
-                    {
-                        if (dataSnapshot.exists()) {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists() && !friend.getList().contains(list.get(position))) {// implement a method in friendlist to check the database for specifid user
 
-                            Developer Developer=list.get(position);
+                            Developer Developer = list.get(position);
                             friend.AddtoList(Developer);
                             database.child(id).setValue(friend);
-                            Toast.makeText(mContext,"Developer added to the project", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(mContext, "Interested in!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Developer added to the project", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(mContext, "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError)
-                    {
+                    public void onCancelled(DatabaseError databaseError) {
 
                         Log.d("Error", "error");
                     }
                 });
-
 
 
             }
@@ -142,11 +147,11 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         return list.size();
     }
 
-    class DevViewHolder extends RecyclerView.ViewHolder{
+    class DevViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textSkills, textYears, textCerts, textInterests;
+        ImageView picture;
         Button btnShowInterest;
-
 
 
         public DevViewHolder(View itemView) {
@@ -157,6 +162,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
             textYears = (TextView) itemView.findViewById(R.id.text_yearsOfExp);
             textCerts = (TextView) itemView.findViewById(R.id.text_certificates);
             textInterests = (TextView) itemView.findViewById(R.id.text_interestedIn);
+            picture = (ImageView) itemView.findViewById(R.id.profile_image);
             btnShowInterest = (Button) itemView.findViewById(R.id.btn_findInterest1);
 
 
@@ -171,5 +177,3 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder>{
         this.list = list;
     }
 }
-
-

@@ -32,11 +32,6 @@ public class ProjectActivity extends AppCompatActivity {
         otherReqs = findViewById(R.id.text_project_otherReqs);
         duration = findViewById(R.id.text_project_duration);
         summary = findViewById(R.id.text_project_summary);
-      //  reqSkillLabel = findViewById(R.id.text_project_skills_label);
-     //   reqExpLabel = findViewById(R.id.text_project_exp_label);
-     //   otherReqsLabel = findViewById(R.id.text_project_otherReqs_label);
-    //    durLabel = findViewById(R.id.text_project_duration_label);
-    //    summaryLabel = findViewById(R.id.text_project_summary_label);
 
         Intent in = getIntent();
         Bundle b = in.getExtras();

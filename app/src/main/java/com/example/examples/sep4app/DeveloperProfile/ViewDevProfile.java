@@ -8,11 +8,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.FindDevs;
@@ -37,10 +39,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewDevProfile extends AppCompatActivity {
 
-    private NavigationView navigation;
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
-
+    public NavigationView navigation;
+    public ActionBarDrawerToggle mToggle;
+    public DrawerLayout mDrawerLayout;
 
     ImageView profilePicture;
     TextView name;
@@ -66,14 +67,16 @@ public class ViewDevProfile extends AppCompatActivity {
         String picture;
 
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_Layout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         navigation = (NavigationView) findViewById(R.id.navigation_view);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //for the drawer side menu ^
-initInstances();
+        initInstances();
+
 
         Intent in = getIntent();
         Bundle b = in.getExtras();
@@ -85,7 +88,6 @@ initInstances();
             Skills.setText(b.getStringArrayList("mSkills").toString());
             preferredIDE.setText(b.getString("mPreferredIDE"));
             picture = (b.getString("mPic"));
-
             Glide.with(getApplicationContext())
                     .load(picture)
                     .into(profilePicture);
@@ -108,8 +110,11 @@ initInstances();
                 }
             });
 
+
+
             //TODO set Profile pic
         }
+
     }
 
     private void initInstances() {
@@ -121,11 +126,19 @@ initInstances();
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
+                Menu menu =navigation.getMenu();
                 switch (id) {
                     case R.id.nav_Main:
                         Intent i = new Intent(ViewDevProfile.this, MainActivity.class);
                         startActivity(i);
                         break;
+
+                    case R.id.nav_ExpandProfile:
+                        boolean b=!menu.findItem(R.id.nav_Profile).isVisible();
+                        menu.findItem(R.id.nav_Profile).setVisible(b);
+                        menu.findItem(R.id.nav_EditProfile).setVisible(b);
+                        break;
+
                     case R.id.nav_Profile:
                         Intent j = new Intent(ViewDevProfile.this, Profile.class);
                         startActivity(j);
@@ -136,11 +149,26 @@ initInstances();
                         break;
 
 
-                    case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(ViewDevProfile.this, CreateDevProfile_1.class);
-                        startActivity(l);
+
+                    case R.id.nav_ExpandDeveloper:
+                        boolean booleanDevelopers=!menu.findItem(R.id.nav_View_Developer_Profile).isVisible();
+                        menu.findItem(R.id.nav_Create_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_Edit_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_View_Developer_Profile).setVisible(booleanDevelopers);
                         break;
 
+                    case R.id.nav_Create_Developer_Profile:
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        if( mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())!=null)
+                        {
+                            Toast.makeText(getApplicationContext(),"You already have a developer profile",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Intent l = new Intent(ViewDevProfile.this, CreateDevProfile_1.class);
+                            startActivity(l);
+                        }
+                        break;
 
                     case R.id.nav_Edit_Developer_Profile:
                         Intent m = new Intent(ViewDevProfile.this, EditDevProfile.class);
@@ -165,6 +193,11 @@ initInstances();
                         Context context = getApplicationContext();
 
 
+                        break;
+
+                    case R.id.nav_ExpandProjects:
+                        boolean booleanProject =!menu.findItem(R.id.nav_CreateProject).isVisible();
+                        menu.findItem(R.id.nav_CreateProject).setVisible(booleanProject);
                         break;
 
                     case R.id.nav_CreateProject:
@@ -193,10 +226,5 @@ initInstances();
 
 }
 
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }*/
 
 

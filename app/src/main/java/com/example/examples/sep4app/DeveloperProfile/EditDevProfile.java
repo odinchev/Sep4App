@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -199,62 +200,87 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
     private void initInstances() {
 
-
+//navbar
 
 
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
+                Menu menu =navigation.getMenu();
                 switch (id) {
                     case R.id.nav_Main:
                         Intent i = new Intent(EditDevProfile.this, MainActivity.class);
                         startActivity(i);
                         break;
+
+                    case R.id.nav_ExpandProfile:
+                        boolean b=!menu.findItem(R.id.nav_Profile).isVisible();
+                        menu.findItem(R.id.nav_Profile).setVisible(b);
+                        menu.findItem(R.id.nav_EditProfile).setVisible(b);
+                        break;
+
                     case R.id.nav_Profile:
-                        Intent j = new Intent(EditDevProfile.this,Profile.class);
+                        Intent j = new Intent(EditDevProfile.this, Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(EditDevProfile.this,EditProfile.class);
+                        Intent k = new Intent(EditDevProfile.this, EditProfile.class);
                         startActivity(k);
                         break;
 
 
-                    case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(EditDevProfile.this,CreateDevProfile_1.class);
-                        startActivity(l);
+
+                    case R.id.nav_ExpandDeveloper:
+                        boolean booleanDevelopers=!menu.findItem(R.id.nav_View_Developer_Profile).isVisible();
+                        menu.findItem(R.id.nav_Create_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_Edit_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_View_Developer_Profile).setVisible(booleanDevelopers);
                         break;
 
+                    case R.id.nav_Create_Developer_Profile:
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        if( mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())!=null)
+                        {
+                            Toast.makeText(getApplicationContext(),"You already have a developer profile",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Intent l = new Intent(EditDevProfile.this, CreateDevProfile_1.class);
+                            startActivity(l);
+                        }
+                        break;
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(EditDevProfile.this,EditDevProfile.class);
+                        Intent m = new Intent(EditDevProfile.this, EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(EditDevProfile.this,DevProfile.class);
+                        Intent n = new Intent(EditDevProfile.this, DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(EditDevProfile.this,FindDevs.class);
+                        Intent o = new Intent(EditDevProfile.this, FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                         Intent p = new Intent(EditDevProfile.this,FindProjects.class);
-                         startActivity(p);
+                        Intent p = new Intent(EditDevProfile.this, FindProjects.class);
+                        startActivity(p);
                         Context context = getApplicationContext();
-                        CharSequence text = "EMPTINESS!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(context, text, duration).show();
-
 
 
                         break;
+
+                    case R.id.nav_ExpandProjects:
+                        boolean booleanProject =!menu.findItem(R.id.nav_CreateProject).isVisible();
+                        menu.findItem(R.id.nav_CreateProject).setVisible(booleanProject);
+                        break;
+
                     case R.id.nav_CreateProject:
 
                         Intent q = new Intent(EditDevProfile.this,CreateProject_1.class);
@@ -270,7 +296,6 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         });
 
     }
-
 
     public boolean onOptionsItemSelected(MenuItem item){
         if(mToggle.onOptionsItemSelected(item))

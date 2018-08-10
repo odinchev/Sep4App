@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -73,14 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
         
         createDev = (Button)findViewById(R.id.btn_createDevProfile);
-        /**
-        createDev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                go2CreateDev();
-            }
-        });
-        */
+
         createProject = (Button)findViewById(R.id.btn_createProject);
         createProject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,53 +99,71 @@ initInstances();
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
+                Menu menu =navigation.getMenu();
                 switch (id) {
                     case R.id.nav_Main:
                         Intent i = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(i);
                         break;
+
+                    case R.id.nav_ExpandProfile:
+                        boolean b=!menu.findItem(R.id.nav_Profile).isVisible();
+                        menu.findItem(R.id.nav_Profile).setVisible(b);
+                        menu.findItem(R.id.nav_EditProfile).setVisible(b);
+                        break;
+
                     case R.id.nav_Profile:
-                        Intent j = new Intent(MainActivity.this,Profile.class);
+                        Intent j = new Intent(MainActivity.this, Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(MainActivity.this,EditProfile.class);
+                        Intent k = new Intent(MainActivity.this, EditProfile.class);
                         startActivity(k);
                         break;
 
 
+
+                    case R.id.nav_ExpandDeveloper:
+                        boolean booleanDevelopers=!menu.findItem(R.id.nav_View_Developer_Profile).isVisible();
+                        menu.findItem(R.id.nav_Create_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_Edit_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_View_Developer_Profile).setVisible(booleanDevelopers);
+                        break;
                     case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(MainActivity.this,CreateDevProfile_1.class);
+                        Intent l = new Intent(MainActivity.this, CreateDevProfile_1.class);
                         startActivity(l);
                         break;
 
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(MainActivity.this,EditDevProfile.class);
+                        Intent m = new Intent(MainActivity.this, EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(MainActivity.this,DevProfile.class);
+                        Intent n = new Intent(MainActivity.this, DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(MainActivity.this,FindDevs.class);
+                        Intent o = new Intent(MainActivity.this, FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                        Intent p = new Intent(MainActivity.this,FindProjects.class);
-                         startActivity(p);
-                        //Context context = getApplicationContext();
-
+                        Intent p = new Intent(MainActivity.this, FindProjects.class);
+                        startActivity(p);
+                        Context context = getApplicationContext();
 
 
                         break;
 
+                    case R.id.nav_ExpandProjects:
+                        boolean booleanProject =!menu.findItem(R.id.nav_CreateProject).isVisible();
+                        menu.findItem(R.id.nav_CreateProject).setVisible(booleanProject);
+                        break;
 
                     case R.id.nav_CreateProject:
 
@@ -168,6 +180,7 @@ initInstances();
         });
 
     }
+
 
 
 

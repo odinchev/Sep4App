@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -125,9 +126,9 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
     @Override
     protected void onResume() {
         super.onResume();
-        //reference.removeEventListener(john);
+
         recyclerView.setAdapter(adapter);
-        //updateList(filteredList);
+
     }
 
     private void initInstances() {
@@ -139,29 +140,52 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
+                Menu menu =navigation.getMenu();
                 switch (id) {
                     case R.id.nav_Main:
                         Intent i = new Intent(FindProjects.this, MainActivity.class);
                         startActivity(i);
                         break;
+
+                    case R.id.nav_ExpandProfile:
+                        boolean b=!menu.findItem(R.id.nav_Profile).isVisible();
+                        menu.findItem(R.id.nav_Profile).setVisible(b);
+                        menu.findItem(R.id.nav_EditProfile).setVisible(b);
+                        break;
+
                     case R.id.nav_Profile:
-                        Intent j = new Intent(FindProjects.this,Profile.class);
+                        Intent j = new Intent(FindProjects.this, Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(FindProjects.this,EditProfile.class);
+                        Intent k = new Intent(FindProjects.this, EditProfile.class);
                         startActivity(k);
                         break;
 
 
-                    case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(FindProjects.this,CreateDevProfile_1.class);
-                        startActivity(l);
+
+                    case R.id.nav_ExpandDeveloper:
+                        boolean booleanDevelopers=!menu.findItem(R.id.nav_View_Developer_Profile).isVisible();
+                        menu.findItem(R.id.nav_Create_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_Edit_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_View_Developer_Profile).setVisible(booleanDevelopers);
                         break;
 
+                    case R.id.nav_Create_Developer_Profile:
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        if( mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())!=null)
+                        {
+                            Toast.makeText(getApplicationContext(),"You already have a developer profile",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Intent l = new Intent(FindProjects.this, CreateDevProfile_1.class);
+                            startActivity(l);
+                        }
+                        break;
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(FindProjects.this,EditDevProfile.class);
+                        Intent m = new Intent(FindProjects.this, EditDevProfile.class);
                         startActivity(m);
                         break;
 
@@ -173,20 +197,21 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(FindProjects.this,FindDevs.class);
+                        Intent o = new Intent(FindProjects.this, FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                         Intent p = new Intent( FindProjects.this,FindProjects.class);
-                         startActivity(p);
+                        Intent p = new Intent(FindProjects.this, FindProjects.class);
+                        startActivity(p);
                         Context context = getApplicationContext();
-                        CharSequence text = "EMPTINESS!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(context, text, duration).show();
 
 
+                        break;
 
+                    case R.id.nav_ExpandProjects:
+                        boolean booleanProject =!menu.findItem(R.id.nav_CreateProject).isVisible();
+                        menu.findItem(R.id.nav_CreateProject).setVisible(booleanProject);
                         break;
 
                     case R.id.nav_CreateProject:
@@ -204,6 +229,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
         });
 
     }
+
 
 
 
@@ -312,7 +338,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                     startActivity(intent);
                 }
             });
-            //adapter.setList(filteredList);
+
             recyclerView.setAdapter(adapter);
 
         }
@@ -349,7 +375,7 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
                     startActivity(intent);
                 }
             });
-            //adapter.setList(filteredList);
+
             recyclerView.setAdapter(adapter);
 
         }

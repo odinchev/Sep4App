@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -56,6 +57,7 @@ public class EditProfile extends AppCompatActivity
     private static final int CHOOSE_IMAGE = 101;
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
+    ImageView backgroundPicture;
     EditText Firstname;
     EditText LastName;
 
@@ -63,6 +65,10 @@ public class EditProfile extends AppCompatActivity
 
     Uri uriProfileImage;
     String profileImageURL;
+
+    Uri uriBacgroundImage;
+    String backgroundImageURL;
+
     FirebaseAuth mAuth;
     DatabaseReference database;
 
@@ -87,6 +93,9 @@ public class EditProfile extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
 
         profilePicture = (ImageView) findViewById(R.id.imageView);
+
+        backgroundPicture=(ImageView)findViewById(R.id.BackgroundImage);
+
         Firstname = (EditText) findViewById(R.id.editTextNameEdit);
         LastName = (EditText) findViewById(R.id.editTextLastName);
 
@@ -113,6 +122,8 @@ public class EditProfile extends AppCompatActivity
                             .load(user.getPicture())
                             .into(profilePicture);
 
+
+                    Glide.with(getApplicationContext()).load(user.getBackgroundPicture()).into(backgroundPicture);
                 }
             }
 
@@ -137,53 +148,80 @@ public class EditProfile extends AppCompatActivity
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
+                Menu menu =navigation.getMenu();
                 switch (id) {
                     case R.id.nav_Main:
                         Intent i = new Intent(EditProfile.this, MainActivity.class);
                         startActivity(i);
                         break;
+
+                    case R.id.nav_ExpandProfile:
+                        boolean b=!menu.findItem(R.id.nav_Profile).isVisible();
+                        menu.findItem(R.id.nav_Profile).setVisible(b);
+                        menu.findItem(R.id.nav_EditProfile).setVisible(b);
+                        break;
+
                     case R.id.nav_Profile:
-                        Intent j = new Intent(EditProfile.this,Profile.class);
+                        Intent j = new Intent(EditProfile.this, Profile.class);
                         startActivity(j);
                         break;
                     case R.id.nav_EditProfile:
-                        Intent k = new Intent(EditProfile.this,EditProfile.class);
+                        Intent k = new Intent(EditProfile.this, EditProfile.class);
                         startActivity(k);
                         break;
 
 
-                    case R.id.nav_Create_Developer_Profile:
-                        Intent l = new Intent(EditProfile.this,CreateDevProfile_1.class);
-                        startActivity(l);
+
+                    case R.id.nav_ExpandDeveloper:
+                        boolean booleanDevelopers=!menu.findItem(R.id.nav_View_Developer_Profile).isVisible();
+                        menu.findItem(R.id.nav_Create_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_Edit_Developer_Profile).setVisible(booleanDevelopers);
+                        menu.findItem(R.id.nav_View_Developer_Profile).setVisible(booleanDevelopers);
                         break;
 
+                    case R.id.nav_Create_Developer_Profile:
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        if( mDatabase.child("Developers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())!=null)
+                        {
+                            Toast.makeText(getApplicationContext(),"You already have a developer profile",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Intent l = new Intent(EditProfile.this, CreateDevProfile_1.class);
+                            startActivity(l);
+                        }
+                        break;
 
                     case R.id.nav_Edit_Developer_Profile:
-                        Intent m = new Intent(EditProfile.this,EditDevProfile.class);
+                        Intent m = new Intent(EditProfile.this, EditDevProfile.class);
                         startActivity(m);
                         break;
 
 
                     case R.id.nav_View_Developer_Profile:
-                        Intent n = new Intent(EditProfile.this,DevProfile.class);
+                        Intent n = new Intent(EditProfile.this, DevProfile.class);
                         startActivity(n);
                         break;
 
 
                     case R.id.nav_Find_Developers:
-                        Intent o = new Intent(EditProfile.this,FindDevs.class);
+                        Intent o = new Intent(EditProfile.this, FindDevs.class);
                         startActivity(o);
                         break;
 
                     case R.id.nav_Find_Projects:
-                         Intent p = new Intent(EditProfile.this,FindProjects.class);
-                         startActivity(p);
+                        Intent p = new Intent(EditProfile.this, FindProjects.class);
+                        startActivity(p);
                         Context context = getApplicationContext();
 
 
-
-
                         break;
+
+                    case R.id.nav_ExpandProjects:
+                        boolean booleanProject =!menu.findItem(R.id.nav_CreateProject).isVisible();
+                        menu.findItem(R.id.nav_CreateProject).setVisible(booleanProject);
+                        break;
+
                     case R.id.nav_CreateProject:
 
                         Intent q = new Intent(EditProfile.this,CreateProject_1.class);
@@ -199,6 +237,7 @@ public class EditProfile extends AppCompatActivity
         });
 
     }
+
 
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -244,6 +283,11 @@ public class EditProfile extends AppCompatActivity
     {
         ShowImageChooser();
     }
+// for the background image
+    public void ChangeBackgroundPicture(View v)
+    {
+        ShowBackgroundImageChooser();
+    }
 
     public void SaveProfileToDatabase(View v)
     {
@@ -269,7 +313,7 @@ public class EditProfile extends AppCompatActivity
         {
             String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-            User Edituser = new User(id, email, name, lastName, description, profileImageURL);
+            User Edituser = new User(id, email, name, lastName, description, profileImageURL,backgroundImageURL);
             database.child(id).setValue(Edituser);
 
 
@@ -290,6 +334,18 @@ public class EditProfile extends AppCompatActivity
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
                 profilePicture.setImageBitmap(bitmap);
                 UploadImageToFirebaseStorage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            uriBacgroundImage = data.getData();
+            try
+            {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriBacgroundImage);
+                backgroundPicture.setImageBitmap(bitmap);
+                UploadBackgroundImageToFirebaseStorage();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -326,6 +382,30 @@ public class EditProfile extends AppCompatActivity
             });
         }
     }
+    public void UploadBackgroundImageToFirebaseStorage()
+    {
+        StorageReference backroundImageReference=FirebaseStorage.getInstance().getReference("backroundPics/"+System.currentTimeMillis()+".jpg");
+        if(uriBacgroundImage!=null)
+        {
+            backroundImageReference.putFile(uriBacgroundImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                {
+                    backgroundImageURL=taskSnapshot.getDownloadUrl().toString();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                  Toast.makeText(EditProfile.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+        }
+
+    }
 
     // for the image choosing
     private void ShowImageChooser()
@@ -334,6 +414,14 @@ public class EditProfile extends AppCompatActivity
         intent.setType("image/*");
         intent.setAction(intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
+    }
+    private void ShowBackgroundImageChooser()
+    {
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(intent.createChooser(intent,"Select Backround Image"),1);
     }
 
 

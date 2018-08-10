@@ -118,7 +118,7 @@ public class Signup_1 extends AppCompatActivity
 
                     // make the user in the database
                     String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User user=new User(id,email,name,LastName,description,null);
+                    User user=new User(id,email,name,LastName,description,null,null);
                     database.child(id).setValue(user);
                     Toast.makeText(getApplicationContext(),"User registered successfull", Toast.LENGTH_LONG).show();
                     // then we load the profile class

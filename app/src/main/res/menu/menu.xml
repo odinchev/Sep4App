@@ -2,7 +2,10 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
 <item
 
     android:id="@+id/nav_Main"
@@ -10,42 +13,59 @@
     android:icon="@drawable/ic_home_black_24dp"
 
 />
+    <group android:id="@+id/nav_profileGroup">
     <item
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:id="@+id/nav_Profile"
-
+        android:id="@+id/nav_ExpandProfile"
+        android:icon="@drawable/ic_plus"
         android:title="Profile"
+     />
+
+
+        <item
+
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:id="@+id/nav_Profile"
+            android:title="Profile"
+            android:visible="false"
+
         />
 
+        <item
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:id="@+id/nav_EditProfile"
+            android:title="Edit Profile"
+             android:visible="false"
 
-
-    <item
-        android:icon="@drawable/ic_edit_black_24dp"
-        android:id="@+id/nav_EditProfile"
-
-        android:title="Edit Profile"
           />
+    </group>
+    <group android:id="@+id/nav_developerGroup">
+    <item
+
+        android:id="@+id/nav_ExpandDeveloper"
+
+        android:icon="@drawable/ic_plus"
+        android:title="Developer"
+    />
+
     <item
         android:icon="@drawable/ic_face_black_24dp"
         android:id="@+id/nav_Create_Developer_Profile"
-
         android:title="Create Developer Profile"
-        />
+        android:visible="false"
+     />
     <item
         android:id="@+id/nav_Edit_Developer_Profile"
-android:icon="@drawable/ic_settings_black_24dp"
+        android:icon="@drawable/ic_settings_black_24dp"
         android:title="Edit Developer Profile"
+        android:visible="false"
+     />
 
-
-
-
-
-        />
-
+    </group>
 <item
 android:icon="@drawable/ic_contacts_black_24dp"
     android:id="@+id/nav_View_Developer_Profile"
     android:title="View Developer Profile"
+    android:visible="false"
 
 
 />
@@ -54,22 +74,30 @@ android:icon="@drawable/ic_contacts_black_24dp"
 
         android:id="@+id/nav_Find_Developers"
         android:title="Find Developers"
-       android:icon="@drawable/ic_person_add_black_24dp"
-        />
+        android:icon="@drawable/ic_person_add_black_24dp"
+     />
     <item
        android:icon="@drawable/ic_find_in_page_black_24dp"
         android:id="@+id/nav_Find_Projects"
         android:title="Find Projects"
 
-        />
+     />
 
 
-    <item
+    <group android:id="@+id/nav_projectsGroup">
+      <item
+        android:id="@+id/nav_ExpandProjects"
+        android:icon="@drawable/ic_plus"
+        android:title="Project"
+      />
+
+       <item
         android:icon="@drawable/ic_plus"
         android:id="@+id/nav_CreateProject"
         android:title="Create Project"
-
-        />
+        android:visible="false"
+       />
+    </group>
 
 
 
