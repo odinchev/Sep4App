@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.DeveloperProfile.DevProfile;
 import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.FindProjects;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.FindDevs;
@@ -230,6 +231,12 @@ public class EditProfile extends AppCompatActivity
 
                         break;
 
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (EditProfile.this, Login.class);
+                        startActivity(r);
+                        break;
 
                 }
                 return false;

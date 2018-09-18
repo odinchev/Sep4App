@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.FindProjects;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.profile.EditProfile;
@@ -36,6 +37,7 @@ public class DevProfile extends AppCompatActivity {
     // this is the class that we use to see the developer profile
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
+    ImageView backgroundPicture;
     TextView name;
     TextView certifications;
    TextView yearsofExperience;
@@ -55,6 +57,7 @@ public class DevProfile extends AppCompatActivity {
         setContentView(R.layout.activity_developer_profile);
 
     profilePicture=(ImageView)findViewById(R.id.imageView);
+    backgroundPicture=(ImageView)findViewById(R.id.backgroundImageDeveloper);
     name=(TextView)findViewById(R.id.textViewName);
     certifications=(TextView)findViewById(R.id.textViewCertifications);
     yearsofExperience=(TextView)findViewById(R.id.textViewYearsofExperience);
@@ -100,6 +103,8 @@ public class DevProfile extends AppCompatActivity {
                             .load(developer.getPicture())
                             .into(profilePicture);
 
+
+                    Glide.with(getApplicationContext()).load(developer.getBackgroundPicture()).into(backgroundPicture);
                 }
             }
 
@@ -201,6 +206,12 @@ public class DevProfile extends AppCompatActivity {
                         startActivity(q);
 
 
+                        break;
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (DevProfile.this, Login.class);
+                        startActivity(r);
                         break;
 
 

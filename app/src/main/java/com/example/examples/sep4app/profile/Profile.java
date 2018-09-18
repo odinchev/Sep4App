@@ -19,6 +19,7 @@ import com.example.examples.sep4app.DeveloperProfile.DevProfile;
 import com.example.examples.sep4app.DeveloperProfile.EditDevProfile;
 import com.example.examples.sep4app.DeveloperProfile.ViewDevProfile;
 import com.example.examples.sep4app.FindProjects;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.FindDevs;
@@ -37,6 +38,7 @@ public class Profile extends AppCompatActivity {
     private NavigationView navigation;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    FirebaseAuth mAuth;
 
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
@@ -170,6 +172,13 @@ public class Profile extends AppCompatActivity {
                         break;
 
 
+
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (Profile.this, Login.class);
+                        startActivity(r);
+                        break;
                 }
                 return false;
             }

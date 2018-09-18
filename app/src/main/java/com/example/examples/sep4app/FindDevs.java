@@ -95,6 +95,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                 b.putString("mPreferredIDE", devClicked.preferredIDE);
                 b.putString("mEmail", devClicked.getEmail());
                 b.putString("mPic",devClicked.getPicture());
+                b.putString("mBackgroundPic",devClicked.getBackgroundPicture());
                 //TODO picture
 
                 Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
@@ -220,6 +221,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                     b.putString("mPreferredIDE", devClicked.preferredIDE);
                     b.putString("mEmail", devClicked.getEmail());
                     b.putString("mPic",devClicked.getPicture());
+                    b.putString("mBackgroundPic",devClicked.getBackgroundPicture());
                     //TODO picture
 
                     Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
@@ -259,6 +261,7 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                     b.putString("mPreferredIDE", devClicked.preferredIDE);
                     b.putString("mEmail", devClicked.getEmail());
                     b.putString("mPic",devClicked.getPicture());
+                    b.putString("mBackgroundPic",devClicked.getBackgroundPicture());
                     //TODO picture
 
                     Intent intent = new Intent(FindDevs.this, ViewDevProfile.class);
@@ -370,6 +373,12 @@ public class FindDevs extends AppCompatActivity implements MultiSelectionSpinner
                         startActivity(q);
 
 
+                        break;
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (FindDevs.this, Login.class);
+                        startActivity(r);
                         break;
 
 

@@ -222,6 +222,12 @@ public class FindProjects extends AppCompatActivity implements MultiSelectionSpi
 
                         break;
 
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (FindProjects.this, Login.class);
+                        startActivity(r);
+                        break;
+
 
                 }
                 return false;

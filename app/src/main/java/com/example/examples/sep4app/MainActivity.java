@@ -21,6 +21,7 @@ import com.example.examples.sep4app.profile.EditProfile;
 import com.example.examples.sep4app.profile.Profile;
 import com.example.examples.sep4app.signUp.CreateDevProfile_1;
 import com.example.examples.sep4app.signUp.CreateProject_1;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -171,6 +172,12 @@ initInstances();
                         startActivity(q);
 
 
+                        break;
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (MainActivity.this, Login.class);
+                        startActivity(r);
                         break;
 
 

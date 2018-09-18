@@ -290,7 +290,7 @@ public class CreateDevProfile_2 extends AppCompatActivity implements MultiSelect
 
         String id= FirebaseAuth.getInstance().getCurrentUser().getUid();
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        Developer developer =new Developer(id,email,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture);
+        Developer developer =new Developer(id,email,name,LastName,certifications,yearsOfExperience,description,skills,preferredIDE,Picture,null);
 
         developer.setEmail(email);
         // we save the developer to the database and we go to the devprofile

@@ -60,28 +60,23 @@
         android:visible="false"
      />
 
+
+    <item
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:id="@+id/nav_View_Developer_Profile"
+        android:title="View Developer Profile"
+        android:visible="false"
+        />
+
+
+
+
+
     </group>
-<item
-android:icon="@drawable/ic_contacts_black_24dp"
-    android:id="@+id/nav_View_Developer_Profile"
-    android:title="View Developer Profile"
-    android:visible="false"
 
 
-/>
 
-    <item
 
-        android:id="@+id/nav_Find_Developers"
-        android:title="Find Developers"
-        android:icon="@drawable/ic_person_add_black_24dp"
-     />
-    <item
-       android:icon="@drawable/ic_find_in_page_black_24dp"
-        android:id="@+id/nav_Find_Projects"
-        android:title="Find Projects"
-
-     />
 
 
     <group android:id="@+id/nav_projectsGroup">
@@ -97,9 +92,31 @@ android:icon="@drawable/ic_contacts_black_24dp"
         android:title="Create Project"
         android:visible="false"
        />
+
+
     </group>
 
+    <item
+
+        android:id="@+id/nav_Find_Developers"
+        android:title="Find Developers"
+        android:icon="@drawable/ic_person_add_black_24dp"
+        />
+    <item
+        android:icon="@drawable/ic_find_in_page_black_24dp"
+        android:id="@+id/nav_Find_Projects"
+        android:title="Find Projects"
 
 
+        />
+
+
+    <item
+
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:id="@+id/nav_SignOut"
+        android:title=" Sign Out"
+
+        />
 
 </menu>

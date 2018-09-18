@@ -26,6 +26,7 @@ public class Developer
    public List<String> skills;
     public String preferredIDE;
     String picture;
+    String backgroundPicture;
 
     private String email;
 
@@ -34,7 +35,7 @@ public class Developer
     }
 
 
-    public Developer(String id, String email, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture)
+    public Developer(String id, String email, String Setname, String SetlastName, String Setcertifications, String SetYearsofExperience, String Setdescription, List<String> skills, String SetPreferredIDE, String ProfilePucture,String SetbackgroundPicture)
     {
         // fetch name from database
         this.id=id;
@@ -47,6 +48,7 @@ public class Developer
         this.skills=skills;
         this.preferredIDE=SetPreferredIDE;
         this.picture=ProfilePucture;
+        this.backgroundPicture=SetbackgroundPicture;
     }
 
 
@@ -83,6 +85,11 @@ public class Developer
     {
         this.picture=picture;
     }
+    public void SetBackgroundPicture(String backgroundPicture)
+    {
+        this.backgroundPicture=backgroundPicture;
+    }
+
     public String getName()
     {
         return name;
@@ -115,6 +122,7 @@ public class Developer
     {
         return picture;
     }
+    public String getBackgroundPicture(){return backgroundPicture;}
 
     public String getEmail() {
         return email;

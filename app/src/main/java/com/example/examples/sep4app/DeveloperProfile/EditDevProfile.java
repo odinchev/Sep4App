@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.FindProjects;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.MultiSelectionSpinner;
 import com.example.examples.sep4app.R;
@@ -60,6 +61,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
     private static final int CHOOSE_IMAGE = 101;
     // name certifications years of experience description preferred ide
     ImageView profilePicture;
+    ImageView backgroundPicture;
     TextView Firstname;
     TextView LastName;
     EditText Certifications;
@@ -70,6 +72,11 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
     Button Save;
     Uri uriProfileImage;
     String profileImageURL;
+
+    Uri uriBacgroundImage;
+    String backgroundImageURL;
+
+
     FirebaseAuth mAuth;
     DatabaseReference database;
     DatabaseReference Users;
@@ -105,6 +112,7 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         mAuth = FirebaseAuth.getInstance();
 
         profilePicture = (ImageView) findViewById(R.id.imageView);
+        backgroundPicture=(ImageView)findViewById(R.id.BackgroundImage);
         Firstname = (TextView) findViewById(R.id.editTextNameEdit);//text views
         LastName = (TextView) findViewById(R.id.editTextLastName);
         Certifications = (EditText) findViewById(R.id.editTextCertificationsEdit);
@@ -139,9 +147,6 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
                     Firstname.setText(user.getName());
                     LastName.setText(user.getLastName());
                     // here is where we use glide to take the picture url and put it into the ImageView
-                    Glide.with(getApplicationContext())
-                            .load(user.getPicture())
-                            .into(profilePicture);
 
                 }
             }
@@ -168,6 +173,14 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
                     Certifications.setText(developer.getCertifications());
                     yearsofExperience.setText(developer.getYearsofExperience());
                     preferredIDE.setText(developer.getide());
+                    skills=developer.getSkills();
+                    profileImageURL=developer.getPicture();
+                    backgroundImageURL=developer.getBackgroundPicture();
+                    Glide.with(getApplicationContext())
+                            .load(developer.getPicture())
+                            .into(profilePicture);
+
+                    Glide.with(getApplicationContext()).load(developer.getBackgroundPicture()).into(backgroundPicture);
                 }
             }
 
@@ -289,6 +302,12 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
 
                         break;
 
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (EditDevProfile.this, Login.class);
+                        startActivity(r);
+                        break;
+
 
                 }
                 return false;
@@ -326,11 +345,15 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
     {
         ShowImageChooser();
     }
+    public void ChangeBackgroundPicture(View v)
+    {
+        ShowBackgroundImageChooser();
+    }
 
     public void SaveProfiletoDatabase(View v)
     {
         SaveUserInformation();
-        finish();
+
     }
 
     public void SaveUserInformation()
@@ -344,12 +367,21 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         String PreferredIDE = preferredIDE.getText().toString().trim();
 
 
+
         FirebaseUser user = mAuth.getCurrentUser();
         // here we save data to the developer object
-        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String email = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skillz, PreferredIDE, profileImageURL);
-        database.child(id).setValue(editDeveloper);
+        if (user != null && profileImageURL != null)
+        {
+            String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String email = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            Developer editDeveloper = new Developer(id, email, name, lastName, certifications, YearsofExperience, description, skillz, PreferredIDE, profileImageURL, backgroundImageURL);
+            database.child(id).setValue(editDeveloper);
+        }
+        else
+        {
+            Toast.makeText(EditDevProfile.this,"Select a Profile picture",Toast.LENGTH_LONG).show();
+
+        }
 
 
     }
@@ -370,6 +402,18 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
             }
             catch (IOException e)
             {
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            uriBacgroundImage = data.getData();
+            try
+            {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriBacgroundImage);
+                backgroundPicture.setImageBitmap(bitmap);
+                UploadBackgroundImageToFirebaseStorage();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -402,6 +446,30 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
             });
         }
     }
+    public void UploadBackgroundImageToFirebaseStorage()
+    {
+        StorageReference backroundImageReference=FirebaseStorage.getInstance().getReference("backroundPics/"+System.currentTimeMillis()+".jpg");
+        if(uriBacgroundImage!=null)
+        {
+            backroundImageReference.putFile(uriBacgroundImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                {
+                    backgroundImageURL=taskSnapshot.getDownloadUrl().toString();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    Toast.makeText(EditDevProfile.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+        }
+
+    }
 
     // for the image choosing
     private void ShowImageChooser()
@@ -410,6 +478,14 @@ public class EditDevProfile extends AppCompatActivity implements MultiSelectionS
         intent.setType("image/*");
         intent.setAction(intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
+    }
+    private void ShowBackgroundImageChooser()
+    {
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(intent.createChooser(intent,"Select Backround Image"),1);
     }
 
 

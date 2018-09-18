@@ -90,6 +90,8 @@ public class Login extends AppCompatActivity
                     // if the activity failed then we get wahtever exception occurred and we display it.
                     Toast.makeText(getApplicationContext(),task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
+                progress.setVisibility(View.INVISIBLE);
+
             }
         });
     }

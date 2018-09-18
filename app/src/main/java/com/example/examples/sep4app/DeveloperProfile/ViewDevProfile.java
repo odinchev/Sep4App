@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.examples.sep4app.FindDevs;
 import com.example.examples.sep4app.FindProjects;
+import com.example.examples.sep4app.Login;
 import com.example.examples.sep4app.MainActivity;
 import com.example.examples.sep4app.R;
 import com.example.examples.sep4app.profile.EditProfile;
@@ -33,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 /**
  * Created by MrWhitemount on 07-Dec-17.
  */
@@ -44,6 +46,7 @@ public class ViewDevProfile extends AppCompatActivity {
     public DrawerLayout mDrawerLayout;
 
     ImageView profilePicture;
+    ImageView backgroundPictureViewDevelopers;
     TextView name;
     TextView certifications;
     TextView yearsofExperience;
@@ -58,6 +61,7 @@ public class ViewDevProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developer_profile);
         profilePicture = (ImageView) findViewById(R.id.imageView);
+        backgroundPictureViewDevelopers=(ImageView)findViewById(R.id.backgroundImageDeveloper);
         name = (TextView) findViewById(R.id.textViewName);
         certifications = (TextView) findViewById(R.id.textViewCertifications);
         yearsofExperience = (TextView) findViewById(R.id.textViewYearsofExperience);
@@ -65,6 +69,7 @@ public class ViewDevProfile extends AppCompatActivity {
         Skills = (TextView) findViewById(R.id.textViewTags);
         preferredIDE = (TextView) findViewById(R.id.textViewPreferredIDE);
         String picture;
+        String backgroundPicture;
 
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_Layout);
@@ -88,9 +93,13 @@ public class ViewDevProfile extends AppCompatActivity {
             Skills.setText(b.getStringArrayList("mSkills").toString());
             preferredIDE.setText(b.getString("mPreferredIDE"));
             picture = (b.getString("mPic"));
+            backgroundPicture=(b.getString("mBackgroundPic"));
             Glide.with(getApplicationContext())
                     .load(picture)
                     .into(profilePicture);
+            Glide.with(getApplicationContext())
+                    .load(backgroundPicture)
+                    .into(backgroundPictureViewDevelopers);
 
             final String email = b.getString("mEmail");
 
@@ -206,6 +215,12 @@ public class ViewDevProfile extends AppCompatActivity {
                         startActivity(q);
 
 
+                        break;
+
+                    case R.id.nav_SignOut:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent r = new Intent (ViewDevProfile.this, Login.class);
+                        startActivity(r);
                         break;
 
 

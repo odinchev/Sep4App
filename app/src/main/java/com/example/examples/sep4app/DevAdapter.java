@@ -87,7 +87,9 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder> {
         Glide.with(mContext)
                 .load(developer.getPicture())
                 .into(holder.picture);
-
+        Glide.with(mContext)
+                .load(developer.getBackgroundPicture())
+                .into(holder.backgroundPicture);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +153,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder> {
 
         TextView textName, textSkills, textYears, textCerts, textInterests;
         ImageView picture;
+        ImageView backgroundPicture;
         Button btnShowInterest;
 
 
@@ -163,6 +166,7 @@ class DevAdapter extends RecyclerView.Adapter<DevAdapter.DevViewHolder> {
             textCerts = (TextView) itemView.findViewById(R.id.text_certificates);
             textInterests = (TextView) itemView.findViewById(R.id.text_interestedIn);
             picture = (ImageView) itemView.findViewById(R.id.profile_image);
+            backgroundPicture=(ImageView) itemView.findViewById(R.id.DeveloperAdapter_BackgroundImage);
             btnShowInterest = (Button) itemView.findViewById(R.id.btn_findInterest1);
 
 
